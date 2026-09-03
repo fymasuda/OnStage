@@ -1,0 +1,1400 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OnStage — Wireframe MVP</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+  :root {
+    --roxo: #533afd;
+    --roxo-light: #7c5cff;
+    --roxo-dark: #3b28c4;
+    --amarelo: #fbbf24;
+    --amarelo-dark: #d97706;
+    --branco: #ffffff;
+    --cinza-50: #f9fafb;
+    --cinza-100: #f3f4f6;
+    --cinza-200: #e5e7eb;
+    --cinza-300: #d1d5db;
+    --cinza-400: #9ca3af;
+    --cinza-500: #6b7280;
+    --cinza-700: #374151;
+    --cinza-900: #111827;
+    --verde: #10b981;
+    --vermelho: #ef4444;
+    --radius: 16px;
+    --radius-sm: 10px;
+    --shadow: 0 2px 12px rgba(0,0,0,0.08);
+    --shadow-lg: 0 8px 30px rgba(0,0,0,0.12);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: var(--cinza-100);
+    color: var(--cinza-900);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* === SCREEN CONTAINER === */
+  .phone {
+    width: 375px;
+    height: 812px;
+    background: var(--branco);
+    border-radius: 40px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: var(--shadow-lg);
+    border: 3px solid var(--cinza-300);
+    flex-shrink: 0;
+  }
+  .notch {
+    width: 140px; height: 28px;
+    background: var(--cinza-900);
+    border-radius: 0 0 18px 18px;
+    margin: 0 auto;
+    position: absolute;
+    top: 0; left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+  }
+  .status-bar {
+    display: flex; justify-content: space-between;
+    padding: 12px 24px 4px;
+    font-size: 12px; font-weight: 600;
+    position: relative; z-index: 5;
+  }
+  .screen-content {
+    padding: 44px 0 0;
+    height: 100%;
+    overflow-y: auto;
+    scrollbar-width: none;
+  }
+  .screen-content::-webkit-scrollbar { display: none; }
+
+  /* === GRID LAYOUT === */
+  .screens-grid {
+    display: flex;
+    gap: 32px;
+    padding: 24px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .screen-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+  .screen-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--cinza-500);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  /* === HEADER === */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 20px;
+    border-bottom: 1px solid var(--cinza-100);
+  }
+  .header-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--cinza-900);
+  }
+  .header-icons {
+    display: flex;
+    gap: 16px;
+  }
+  .icon-btn {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px;
+    color: var(--cinza-700);
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .icon-btn:active { background: var(--cinza-100); }
+
+  /* === SEARCH BAR === */
+  .search-bar {
+    margin: 12px 20px;
+    background: var(--cinza-50);
+    border-radius: var(--radius-sm);
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid var(--cinza-200);
+  }
+  .search-bar input {
+    border: none; outline: none; background: transparent;
+    font-size: 14px; flex: 1;
+    font-family: 'Inter', sans-serif;
+    color: var(--cinza-700);
+  }
+  .search-bar input::placeholder { color: var(--cinza-400); }
+
+  /* === TAB BAR === */
+  .tab-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0; right: 0;
+    height: 72px;
+    background: var(--branco);
+    border-top: 1px solid var(--cinza-200);
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding-bottom: 8px;
+    z-index: 10;
+  }
+  .tab-item {
+    display: flex; flex-direction: column;
+    align-items: center; gap: 3px;
+    font-size: 10px; font-weight: 500;
+    color: var(--cinza-400);
+    cursor: pointer;
+    padding: 4px 12px;
+    border-radius: 12px;
+    transition: all 0.2s;
+  }
+  .tab-item.active { color: var(--roxo); }
+  .tab-item i { font-size: 20px; }
+
+  /* === FEED CARD === */
+  .feed-card {
+    margin: 0 20px 16px;
+    background: var(--branco);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    border: 1px solid var(--cinza-100);
+  }
+  .feed-card-header {
+    display: flex; align-items: center;
+    gap: 12px; padding: 12px 16px;
+  }
+  .avatar {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    background: var(--cinza-200);
+    object-fit: cover;
+  }
+  .avatar-sm { width: 32px; height: 32px; }
+  .feed-card-info { flex: 1; }
+  .feed-card-name {
+    font-size: 14px; font-weight: 600;
+    display: flex; align-items: center; gap: 4px;
+  }
+  .verified {
+    width: 16px; height: 16px;
+    background: var(--roxo);
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center; justify-content: center;
+  }
+  .verified i { font-size: 8px; color: white; }
+  .feed-card-meta { font-size: 12px; color: var(--cinza-500); }
+  .feed-card-img {
+    width: 100%; height: 200px;
+    background: var(--cinza-200);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 48px; color: var(--cinza-400);
+    position: relative;
+  }
+  .play-btn {
+    position: absolute;
+    bottom: 12px; right: 12px;
+    width: 44px; height: 44px;
+    background: rgba(0,0,0,0.6);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    color: white; font-size: 16px;
+    backdrop-filter: blur(4px);
+  }
+  .feed-card-actions {
+    display: flex; gap: 16px; padding: 12px 16px;
+    font-size: 20px; color: var(--cinza-700);
+  }
+  .feed-card-actions i { cursor: pointer; }
+  .feed-card-actions .liked { color: var(--vermelho); }
+  .feed-card-body {
+    padding: 0 16px 14px;
+    font-size: 14px; line-height: 1.5;
+  }
+  .likes-count {
+    font-weight: 600; font-size: 13px;
+    padding: 0 16px 4px;
+  }
+
+  /* === CHIP / TAG === */
+  .chips {
+    display: flex; gap: 8px;
+    padding: 0 20px 12px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .chips::-webkit-scrollbar { display: none; }
+  .chip {
+    padding: 7px 14px;
+    border-radius: 20px;
+    font-size: 13px; font-weight: 500;
+    white-space: nowrap;
+    cursor: pointer;
+    border: 1px solid var(--cinza-200);
+    background: var(--branco);
+    color: var(--cinza-700);
+    transition: all 0.2s;
+  }
+  .chip.active {
+    background: var(--roxo);
+    color: white;
+    border-color: var(--roxo);
+  }
+
+  /* === PROFILE === */
+  .profile-header {
+    text-align: center;
+    padding: 20px 20px 16px;
+  }
+  .profile-avatar {
+    width: 88px; height: 88px;
+    border-radius: 50%;
+    background: var(--cinza-200);
+    margin: 0 auto 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 36px; color: var(--cinza-400);
+    border: 3px solid var(--roxo);
+  }
+  .profile-name {
+    font-size: 20px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center; gap: 6px;
+  }
+  .profile-bio {
+    font-size: 13px; color: var(--cinza-500);
+    margin-top: 4px; line-height: 1.4;
+  }
+  .profile-stats {
+    display: flex; justify-content: center;
+    gap: 32px; margin: 16px 0;
+  }
+  .stat { text-align: center; }
+  .stat-num { font-size: 18px; font-weight: 700; }
+  .stat-label { font-size: 11px; color: var(--cinza-500); text-transform: uppercase; }
+  .profile-actions {
+    display: flex; gap: 8px;
+    padding: 0 20px;
+  }
+  .btn {
+    flex: 1; padding: 10px;
+    border-radius: var(--radius-sm);
+    font-size: 14px; font-weight: 600;
+    text-align: center; cursor: pointer;
+    border: none; outline: none;
+    transition: all 0.2s;
+    font-family: 'Inter', sans-serif;
+  }
+  .btn-primary {
+    background: var(--roxo); color: white;
+  }
+  .btn-primary:active { background: var(--roxo-dark); }
+  .btn-secondary {
+    background: var(--cinza-100); color: var(--cinza-900);
+    border: 1px solid var(--cinza-200);
+  }
+  .profile-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3px;
+    padding: 16px 20px;
+  }
+  .grid-item {
+    aspect-ratio: 1;
+    background: var(--cinza-200);
+    border-radius: 4px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px; color: var(--cinza-400);
+  }
+
+  /* === CARD EXPLORE === */
+  .explore-card {
+    margin: 0 20px 12px;
+    background: var(--branco);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    display: flex; gap: 12px;
+    padding: 14px;
+    border: 1px solid var(--cinza-100);
+  }
+  .explore-img {
+    width: 80px; height: 80px;
+    border-radius: var(--radius-sm);
+    background: var(--cinza-200);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 28px; color: var(--cinza-400);
+    flex-shrink: 0;
+  }
+  .explore-info { flex: 1; }
+  .explore-name { font-size: 15px; font-weight: 600; margin-bottom: 2px; }
+  .explore-genre { font-size: 12px; color: var(--roxo); font-weight: 500; }
+  .explore-location { font-size: 12px; color: var(--cinza-500); margin-top: 2px; }
+  .explore-price {
+    font-size: 15px; font-weight: 700; color: var(--verde);
+    margin-top: 6px;
+  }
+  .explore-rating {
+    font-size: 12px; color: var(--amarelo-dark); font-weight: 600;
+    margin-top: 2px;
+  }
+
+  /* === CHAT === */
+  .chat-list {
+    padding: 8px 0;
+  }
+  .chat-item {
+    display: flex; align-items: center;
+    gap: 12px; padding: 12px 20px;
+    cursor: pointer;
+  }
+  .chat-item:active { background: var(--cinza-50); }
+  .chat-avatar {
+    width: 50px; height: 50px;
+    border-radius: 50%;
+    background: var(--cinza-200);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px; color: var(--cinza-400);
+  }
+  .chat-info { flex: 1; }
+  .chat-name { font-size: 15px; font-weight: 600; }
+  .chat-preview {
+    font-size: 13px; color: var(--cinza-500);
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    max-width: 220px;
+  }
+  .chat-meta { text-align: right; }
+  .chat-time { font-size: 11px; color: var(--cinza-400); }
+  .chat-badge {
+    width: 20px; height: 20px;
+    background: var(--roxo); color: white;
+    border-radius: 50%; font-size: 11px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    margin-top: 4px; margin-left: auto;
+  }
+
+  /* === BUBBLES === */
+  .chat-bubbles {
+    padding: 12px 20px;
+    flex: 1;
+    display: flex; flex-direction: column; gap: 8px;
+  }
+  .bubble {
+    max-width: 260px;
+    padding: 10px 14px;
+    border-radius: 18px;
+    font-size: 14px; line-height: 1.4;
+  }
+  .bubble-sent {
+    background: var(--roxo); color: white;
+    align-self: flex-end;
+    border-bottom-right-radius: 4px;
+  }
+  .bubble-received {
+    background: var(--cinza-100); color: var(--cinza-900);
+    align-self: flex-start;
+    border-bottom-left-radius: 4px;
+  }
+
+  /* === CALENDAR === */
+  .calendar {
+    padding: 16px 20px;
+  }
+  .cal-header {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 16px;
+  }
+  .cal-month { font-size: 16px; font-weight: 700; }
+  .cal-nav {
+    display: flex; gap: 8px;
+  }
+  .cal-grid {
+    display: grid; grid-template-columns: repeat(7, 1fr);
+    gap: 4px; text-align: center;
+  }
+  .cal-day-name {
+    font-size: 11px; color: var(--cinza-400); font-weight: 600;
+    padding: 8px 0;
+  }
+  .cal-day {
+    aspect-ratio: 1;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; border-radius: 50%;
+    cursor: pointer;
+    color: var(--cinza-700);
+  }
+  .cal-day.today { background: var(--amarelo); color: var(--cinza-900); font-weight: 700; }
+  .cal-day.event { color: var(--roxo); font-weight: 700; }
+  .cal-day.muted { color: var(--cinza-300); }
+
+  /* === BOTTOM SHEET / MODAL === */
+  .bottom-sheet {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    background: var(--branco);
+    border-radius: 24px 24px 0 0;
+    padding: 20px;
+    box-shadow: 0 -4px 30px rgba(0,0,0,0.1);
+    z-index: 20;
+  }
+  .sheet-handle {
+    width: 40px; height: 4px;
+    background: var(--cinza-300);
+    border-radius: 2px;
+    margin: 0 auto 16px;
+  }
+  .sheet-title {
+    font-size: 18px; font-weight: 700;
+    text-align: center; margin-bottom: 16px;
+  }
+
+  /* === ONBOARDING === */
+  .onboarding-slide {
+    height: 100%;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    padding: 40px 32px;
+    text-align: center;
+  }
+  .onb-icon {
+    width: 120px; height: 120px;
+    border-radius: 30px;
+    background: linear-gradient(135deg, var(--roxo), var(--roxo-light));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 48px; color: white;
+    margin-bottom: 32px;
+    box-shadow: 0 12px 40px rgba(83, 58, 253, 0.3);
+  }
+  .onb-title {
+    font-size: 26px; font-weight: 800;
+    color: var(--cinza-900);
+    margin-bottom: 12px; line-height: 1.2;
+  }
+  .onb-text {
+    font-size: 15px; color: var(--cinza-500);
+    line-height: 1.6; margin-bottom: 40px;
+  }
+  .onb-dots {
+    display: flex; gap: 8px;
+    margin-bottom: 32px;
+  }
+  .dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--cinza-200);
+  }
+  .dot.active {
+    width: 24px; border-radius: 4px;
+    background: var(--roxo);
+  }
+  .btn-full {
+    width: 100%; padding: 16px;
+    border-radius: var(--radius);
+    font-size: 16px; font-weight: 700;
+    text-align: center; cursor: pointer;
+    border: none; outline: none;
+    transition: all 0.2s;
+    font-family: 'Inter', sans-serif;
+  }
+
+  /* === ANNOTATION === */
+  .annotation {
+    position: absolute;
+    background: var(--amarelo);
+    color: var(--cinza-900);
+    font-size: 10px; font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 6px;
+    white-space: nowrap;
+    z-index: 50;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  }
+  .annotation::after {
+    content: '';
+    position: absolute;
+    width: 0; height: 0;
+    border: 5px solid transparent;
+  }
+  .annotation.right::after {
+    border-right-color: var(--amarelo);
+    left: -10px; top: 50%; transform: translateY(-50%);
+  }
+  .annotation.left::after {
+    border-left-color: var(--amarelo);
+    right: -10px; top: 50%; transform: translateY(-50%);
+  }
+
+  /* === PAGE HEADER === */
+  .page-header {
+    padding: 24px 20px 16px;
+    background: var(--branco);
+    border-bottom: 1px solid var(--cinza-100);
+  }
+  .page-title {
+    font-size: 24px; font-weight: 800;
+    color: var(--cinza-900);
+    margin-bottom: 4px;
+  }
+  .page-subtitle {
+    font-size: 14px; color: var(--cinza-500);
+  }
+
+  /* === GENRE TAG === */
+  .genre-tag {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 11px; font-weight: 600;
+    background: var(--cinza-100);
+    color: var(--cinza-700);
+  }
+
+  /* === BADGE === */
+  .badge {
+    display: inline-flex; align-items: center; gap: 4px;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 11px; font-weight: 600;
+    background: var(--roxo);
+    color: white;
+  }
+
+  /* === GIG CARD === */
+  .gig-card {
+    margin: 0 20px 12px;
+    background: var(--branco);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 16px;
+    border: 1px solid var(--cinza-100);
+  }
+  .gig-header {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    margin-bottom: 10px;
+  }
+  .gig-date {
+    font-size: 12px; color: var(--cinza-500); font-weight: 500;
+  }
+  .gig-paid {
+    font-size: 12px; color: var(--verde); font-weight: 700;
+  }
+  .gig-title { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
+  .gig-venue { font-size: 13px; color: var(--cinza-500); margin-bottom: 10px; }
+  .gig-venue i { margin-right: 4px; }
+  .gig-info {
+    display: flex; gap: 16px; font-size: 13px; color: var(--cinza-700);
+  }
+  .gig-info span { display: flex; align-items: center; gap: 4px; }
+
+  /* === SECTION TITLE === */
+  .section-title {
+    font-size: 16px; font-weight: 700;
+    padding: 16px 20px 8px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .section-link {
+    font-size: 13px; color: var(--roxo); font-weight: 600;
+  }
+
+  /* === STUDIO CARD === */
+  .studio-card {
+    margin: 0 20px 12px;
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--cinza-100);
+  }
+  .studio-img {
+    height: 140px;
+    background: var(--cinza-200);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 40px; color: var(--cinza-400);
+    position: relative;
+  }
+  .studio-badge {
+    position: absolute;
+    top: 10px; right: 10px;
+    background: var(--verde);
+    color: white;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 11px; font-weight: 700;
+  }
+  .studio-info {
+    padding: 14px 16px;
+    background: var(--branco);
+  }
+  .studio-name { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
+  .studio-details { font-size: 12px; color: var(--cinza-500); }
+  .studio-price {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-top: 10px;
+  }
+  .price-val { font-size: 18px; font-weight: 800; color: var(--roxo); }
+  .price-unit { font-size: 12px; color: var(--cinza-400); }
+
+  /* === CREDIT BAR === */
+  .credit-bar {
+    margin: 12px 20px;
+    background: linear-gradient(135deg, var(--roxo), var(--roxo-light));
+    border-radius: var(--radius);
+    padding: 16px;
+    color: white;
+  }
+  .credit-label { font-size: 12px; opacity: 0.85; font-weight: 500; }
+  .credit-val { font-size: 24px; font-weight: 800; margin: 4px 0; }
+  .credit-cta {
+    display: inline-block;
+    background: rgba(255,255,255,0.2);
+    padding: 8px 16px;
+    border-radius: var(--radius-sm);
+    font-size: 13px; font-weight: 600;
+    backdrop-filter: blur(4px);
+    cursor: pointer;
+  }
+
+  /* === DOCUMENTATION === */
+  .doc-section {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 0 20px 60px;
+  }
+  .doc-section h2 {
+    font-size: 22px; font-weight: 800;
+    color: var(--roxo);
+    margin-bottom: 16px;
+  }
+  .doc-section p {
+    font-size: 15px; line-height: 1.7;
+    color: var(--cinza-700);
+    margin-bottom: 12px;
+  }
+  .doc-section ul {
+    padding-left: 24px;
+    margin-bottom: 16px;
+  }
+  .doc-section li {
+    font-size: 14px; line-height: 1.8;
+    color: var(--cinza-700);
+  }
+  .principle-box {
+    background: var(--cinza-50);
+    border-left: 4px solid var(--roxo);
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin: 16px 0;
+  }
+  .principle-box h4 {
+    font-size: 15px; font-weight: 700;
+    color: var(--roxo); margin-bottom: 6px;
+  }
+  .principle-box p {
+    font-size: 13px; color: var(--cinza-500); margin: 0;
+  }
+</style>
+</head>
+<body>
+
+<!-- ===================================================== -->
+<!-- HEADER DO PROJETO -->
+<!-- ===================================================== -->
+<div style="background: var(--roxo); color: white; padding: 40px 20px; text-align: center;">
+  <h1 style="font-size: 32px; font-weight: 800; margin-bottom: 8px;">
+    <i class="fas fa-bolt" style="color: var(--amarelo);"></i> OnStage
+  </h1>
+  <p style="font-size: 16px; opacity: 0.9; margin-bottom: 4px;">Wireframe MVP — Mobile First</p>
+  <p style="font-size: 13px; opacity: 0.7;">Design familiar, simples e intuitivo — "já sei usar"</p>
+</div>
+
+<!-- ===================================================== -->
+<!-- TELA 1: ONBOARDING -->
+<!-- ===================================================== -->
+<div class="screens-grid" style="padding-top: 40px;">
+
+  <!-- Onboarding 1 -->
+  <div class="screen-group">
+    <div class="screen-label">Onboarding</div>
+    <div class="phone" style="height: 600px;">
+      <div class="screen-content">
+        <div class="onboarding-slide">
+          <div class="onb-icon"><i class="fas fa-music"></i></div>
+          <div class="onb-title">Seu palco te espera</div>
+          <div class="onb-text">Conecte-se a bares, festivais e eventos. Mostre seu talento para o mundo.</div>
+          <div class="onb-dots">
+            <div class="dot active"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+          </div>
+          <button class="btn-full btn-primary" style="background: var(--roxo); color: white;">Começar agora</button>
+          <button class="btn-full btn-secondary" style="margin-top: 10px; background: transparent; color: var(--cinza-500);">Já tenho conta</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Onboarding 2 -->
+  <div class="screen-group">
+    <div class="screen-label">Escolha seu perfil</div>
+    <div class="phone" style="height: 600px;">
+      <div class="screen-content">
+        <div class="onboarding-slide">
+          <div class="onb-icon" style="background: linear-gradient(135deg, var(--amarelo), var(--amarelo-dark));"><i class="fas fa-user"></i></div>
+          <div class="onb-title">Como você quer usar?</div>
+          <div class="onb-text">Escolha seu perfil para personalizar sua experiência.</div>
+          <div style="width: 100%; display: flex; flex-direction: column; gap: 10px; margin-top: 20px;">
+            <div style="background: var(--cinza-50); border: 2px solid var(--roxo); border-radius: var(--radius); padding: 16px; display: flex; align-items: center; gap: 14px;">
+              <i class="fas fa-guitar" style="font-size: 22px; color: var(--roxo);"></i>
+              <div style="text-align: left;">
+                <div style="font-weight: 700; font-size: 15px;">Sou músico/banda</div>
+                <div style="font-size: 12px; color: var(--cinza-500);">Quero encontrar shows</div>
+              </div>
+            </div>
+            <div style="background: var(--cinza-50); border: 2px solid var(--cinza-200); border-radius: var(--radius); padding: 16px; display: flex; align-items: center; gap: 14px;">
+              <i class="fas fa-store" style="font-size: 22px; color: var(--cinza-500);"></i>
+              <div style="text-align: left;">
+                <div style="font-weight: 700; font-size: 15px;">Sou contratante</div>
+                <div style="font-size: 12px; color: var(--cinza-500);">Quero contratar músicos</div>
+              </div>
+            </div>
+            <div style="background: var(--cinza-50); border: 2px solid var(--cinza-200); border-radius: var(--radius); padding: 16px; display: flex; align-items: center; gap: 14px;">
+              <i class="fas fa-door-open" style="font-size: 22px; color: var(--cinza-500);"></i>
+              <div style="text-align: left;">
+                <div style="font-weight: 700; font-size: 15px;">Sou estúdio</div>
+                <div style="font-size: 12px; color: var(--cinza-500);">Alugo salas de ensaio</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ===================================================== -->
+<!-- TELA 2: HOME FEED (Instagram-like) -->
+<!-- ===================================================== -->
+<div class="screens-grid">
+
+  <div class="screen-group">
+    <div class="screen-label">Home Feed</div>
+    <div class="phone">
+      <div class="notch"></div>
+      <div class="screen-content" style="padding-bottom: 80px;">
+
+        <!-- Header -->
+        <div class="header">
+          <div style="font-size: 22px; font-weight: 800; color: var(--roxo);">OnStage</div>
+          <div class="header-icons">
+            <div class="icon-btn"><i class="fas fa-heart"></i></div>
+            <div class="icon-btn"><i class="fas fa-paper-plane"></i></div>
+          </div>
+        </div>
+
+        <!-- Chips -->
+        <div class="chips" style="padding-top: 12px;">
+          <div class="chip active"><i class="fas fa-fire" style="margin-right: 4px;"></i>Para você</div>
+          <div class="chip">MPB</div>
+          <div class="chip">Rock</div>
+          <div class="chip">Sertanejo</div>
+          <div class="chip">Jazz</div>
+          <div class="chip">Cover</div>
+        </div>
+
+        <!-- Feed Card 1 -->
+        <div class="feed-card">
+          <div class="feed-card-header">
+            <img src="https://i.pravatar.cc/80?img=12" class="avatar" alt="">
+            <div class="feed-card-info">
+              <div class="feed-card-name">
+                Luna & The Band <div class="verified"><i class="fas fa-check"></i></div>
+              </div>
+              <div class="feed-card-meta">São Paulo, SP • 2h</div>
+            </div>
+            <i class="fas fa-ellipsis-h" style="color: var(--cinza-400);"></i>
+          </div>
+          <div class="feed-card-img" style="background: linear-gradient(135deg, #667eea, #764ba2);">
+            <i class="fas fa-microphone-alt" style="color: white;"></i>
+            <div class="play-btn"><i class="fas fa-play" style="margin-left: 3px;"></i></div>
+          </div>
+          <div class="feed-card-actions">
+            <i class="fas fa-heart liked"></i>
+            <i class="fas fa-comment"></i>
+            <i class="fas fa-paper-plane"></i>
+            <div style="flex:1;"></div>
+            <i class="fas fa-bookmark"></i>
+          </div>
+          <div class="likes-count">1.247 curtidas</div>
+          <div class="feed-card-body">
+            <strong>Luna & The Band</strong> Nova autoral saindo do forno! "Cidade em Chamas" já disponível em todas as plataformas. Quem quer gente no show do sábado? 🎸🔥
+          </div>
+        </div>
+
+        <!-- Feed Card 2 -->
+        <div class="feed-card">
+          <div class="feed-card-header">
+            <img src="https://i.pravatar.cc/80?img=33" class="avatar" alt="">
+            <div class="feed-card-info">
+              <div class="feed-card-name">Marcos Acoustic</div>
+              <div class="feed-card-meta">Campinas, SP • 5h</div>
+            </div>
+            <i class="fas fa-ellipsis-h" style="color: var(--cinza-400);"></i>
+          </div>
+          <div class="feed-card-img" style="background: linear-gradient(135deg, #f093fb, #f5576c);">
+            <i class="fas fa-guitar" style="color: white;"></i>
+            <div class="play-btn"><i class="fas fa-play" style="margin-left: 3px;"></i></div>
+          </div>
+          <div class="feed-card-actions">
+            <i class="fas fa-heart"></i>
+            <i class="fas fa-comment"></i>
+            <i class="fas fa-paper-plane"></i>
+            <div style="flex:1;"></div>
+            <i class="fas fa-bookmark"></i>
+          </div>
+          <div class="likes-count">847 curtidas</div>
+          <div class="feed-card-body">
+            <strong>Marcos Acoustic</strong> Cover de "Under the Bridge" — Red Hot Chili Peppers. Bora curtir um rock hoje? 🎶
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Tab Bar -->
+      <div class="tab-bar">
+        <div class="tab-item active"><i class="fas fa-home"></i>Início</div>
+        <div class="tab-item"><i class="fas fa-search"></i>Explorar</div>
+        <div class="tab-item"><i class="fas fa-plus-circle" style="font-size: 28px; color: var(--roxo);"></i></div>
+        <div class="tab-item"><i class="fas fa-calendar"></i>Agenda</div>
+        <div class="tab-item"><i class="fas fa-user"></i>Perfil</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================== -->
+  <!-- TELA 3: EXPLORE / BUSCA (Spotify-like) -->
+  <!-- ===================================================== -->
+  <div class="screen-group">
+    <div class="screen-label">Explorar / Busca</div>
+    <div class="phone">
+      <div class="notch"></div>
+      <div class="screen-content" style="padding-bottom: 80px;">
+
+        <div class="page-header">
+          <div class="page-title">Explorar</div>
+          <div class="page-subtitle">Encontre músicos e bandas para seu evento</div>
+        </div>
+
+        <div class="search-bar">
+          <i class="fas fa-search" style="color: var(--cinza-400);"></i>
+          <input placeholder="Buscar por nome, gênero, cidade...">
+        </div>
+
+        <!-- Filters -->
+        <div class="chips">
+          <div class="chip active">Todos</div>
+          <div class="chip">Autoral</div>
+          <div class="chip">Cover</div>
+          <div class="chip">Banda</div>
+          <div class="chip">Solo</div>
+          <div class="chip">Duo</div>
+        </div>
+
+        <!-- Map preview -->
+        <div style="margin: 0 20px 12px; height: 120px; border-radius: var(--radius); background: var(--cinza-200); display: flex; align-items: center; justify-content: center; position: relative;">
+          <i class="fas fa-map-marker-alt" style="font-size: 28px; color: var(--roxo);"></i>
+          <div style="position: absolute; top: 10px; right: 10px; background: var(--branco); padding: 4px 10px; border-radius: 12px; font-size: 11px; font-weight: 600; box-shadow: var(--shadow);">
+            <i class="fas fa-map" style="margin-right: 4px;"></i>Mapa
+          </div>
+        </div>
+
+        <!-- Results -->
+        <div style="padding: 0 20px 8px; font-size: 13px; font-weight: 600; color: var(--cinza-500);">24 músicos perto de você</div>
+
+        <div class="explore-card">
+          <img src="https://i.pravatar.cc/80?img=12" class="explore-img" alt="" style="border-radius: var(--radius-sm);">
+          <div class="explore-info">
+            <div class="explore-name">Luna & The Band <i class="fas fa-check-circle" style="color: var(--roxo); font-size: 13px;"></i></div>
+            <div class="explore-genre">MPB • Autoral</div>
+            <div class="explore-location"><i class="fas fa-map-marker-alt" style="font-size: 11px;"></i> São Paulo, SP — 3km</div>
+            <div class="explore-price">a partir de R$ 800</div>
+            <div class="explore-rating"><i class="fas fa-star" style="color: var(--amarelo);"></i> 4.9 (23 avaliações)</div>
+          </div>
+        </div>
+
+        <div class="explore-card">
+          <img src="https://i.pravatar.cc/80?img=33" class="explore-img" alt="" style="border-radius: var(--radius-sm);">
+          <div class="explore-info">
+            <div class="explore-name">Marcos Acoustic</div>
+            <div class="explore-genre">Rock • Cover</div>
+            <div class="explore-location"><i class="fas fa-map-marker-alt" style="font-size: 11px;"></i> Campinas, SP — 12km</div>
+            <div class="explore-price">a partir de R$ 500</div>
+            <div class="explore-rating"><i class="fas fa-star" style="color: var(--amarelo);"></i> 4.7 (18 avaliações)</div>
+          </div>
+        </div>
+
+        <div class="explore-card">
+          <img src="https://i.pravatar.cc/80?img=68" class="explore-img" alt="" style="border-radius: var(--radius-sm);">
+          <div class="explore-info">
+            <div class="explore-name">Jazz Collective <i class="fas fa-check-circle" style="color: var(--roxo); font-size: 13px;"></i></div>
+            <div class="explore-genre">Jazz • Autoral</div>
+            <div class="explore-location"><i class="fas fa-map-marker-alt" style="font-size: 11px;"></i> Sorocaba, SP — 28km</div>
+            <div class="explore-price">a partir de R$ 1.200</div>
+            <div class="explore-rating"><i class="fas fa-star" style="color: var(--amarelo);"></i> 4.8 (31 avaliações)</div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="tab-bar">
+        <div class="tab-item"><i class="fas fa-home"></i>Início</div>
+        <div class="tab-item active"><i class="fas fa-search"></i>Explorar</div>
+        <div class="tab-item"><i class="fas fa-plus-circle" style="font-size: 28px; color: var(--roxo);"></i></div>
+        <div class="tab-item"><i class="fas fa-calendar"></i>Agenda</div>
+        <div class="tab-item"><i class="fas fa-user"></i>Perfil</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================== -->
+  <!-- TELA 4: PERFIL MÚSICO (Instagram-like) -->
+  <!-- ===================================================== -->
+  <div class="screen-group">
+    <div class="screen-label">Perfil do Músico</div>
+    <div class="phone">
+      <div class="notch"></div>
+      <div class="screen-content" style="padding-bottom: 80px;">
+
+        <!-- Header -->
+        <div class="header">
+          <i class="fas fa-arrow-left" style="font-size: 18px;"></i>
+          <div class="header-title">Luna & The Band</div>
+          <div class="header-icons">
+            <div class="icon-btn"><i class="fas fa-ellipsis-h"></i></div>
+          </div>
+        </div>
+
+        <!-- Profile Info -->
+        <div class="profile-header">
+          <img src="https://i.pravatar.cc/120?img=12" alt="" style="width:88px; height:88px; border-radius:50%; border:3px solid var(--roxo); margin-bottom:12px;">
+          <div class="profile-name">Luna & The Band <div class="verified"><i class="fas fa-check"></i></div></div>
+          <div class="profile-bio">MPB • Autoral • Rock<br>São Paulo, SP 🎵 4 integrantes</div>
+          <div class="profile-stats">
+            <div class="stat"><div class="stat-num">47</div><div class="stat-label">Shows</div></div>
+            <div class="stat"><div class="stat-num">1.2K</div><div class="stat-label">Seguidores</div></div>
+            <div class="stat"><div class="stat-num">4.9</div><div class="stat-label"><i class="fas fa-star" style="color: var(--amarelo); font-size:12px;"></i> Rating</div></div>
+          </div>
+          <div class="profile-actions">
+            <button class="btn btn-primary"><i class="fas fa-paper-plane" style="margin-right:6px;"></i>Contratar</button>
+            <button class="btn btn-secondary"><i class="fas fa-user-plus"></i></button>
+          </div>
+        </div>
+
+        <!-- Bio expandida -->
+        <div style="padding: 0 20px 16px; font-size: 13px; color: var(--cinza-700); line-height: 1.6;">
+          Banda de MPB com pitadas de rock autoral. Formada em 2022, já passou por mais de 40 palcos no estado de SP. Nosso repertório mistura faixas autorais com releituras de grandes nomes da música brasileira. 🎸🎤
+        </div>
+
+        <!-- Spotify embed placeholder -->
+        <div style="margin: 0 20px 12px; background: var(--cinza-50); border-radius: var(--radius-sm); padding: 12px; display: flex; align-items: center; gap: 10px;">
+          <i class="fab fa-spotify" style="font-size: 28px; color: #1DB954;"></i>
+          <div>
+            <div style="font-size: 13px; font-weight: 600;">Ouça no Spotify</div>
+            <div style="font-size: 11px; color: var(--cinza-500);">20 faixas • 2.4K seguidores</div>
+          </div>
+        </div>
+
+        <!-- Gigs -->
+        <div class="section-title">
+          Próximos Shows
+          <div class="section-link">Ver todos</div>
+        </div>
+        <div class="gig-card">
+          <div class="gig-header">
+            <div class="gig-date"><i class="fas fa-calendar-alt" style="margin-right:4px;"></i>Sáb, 15 Nov — 21h</div>
+            <div class="gig-paid">R$ 1.500</div>
+          </div>
+          <div class="gig-title">Bar do Zé — Vila Madalena</div>
+          <div class="gig-info">
+            <span><i class="fas fa-music"></i> MPB + Autoral</span>
+            <span><i class="fas fa-users"></i> 4 músicos</span>
+          </div>
+        </div>
+
+        <!-- Grid de posts -->
+        <div class="profile-grid">
+          <div class="grid-item"><i class="fas fa-image"></i></div>
+          <div class="grid-item"><i class="fas fa-video"></i></div>
+          <div class="grid-item"><i class="fas fa-music"></i></div>
+          <div class="grid-item"><i class="fas fa-image"></i></div>
+          <div class="grid-item"><i class="fas fa-video"></i></div>
+          <div class="grid-item"><i class="fas fa-music"></i></div>
+        </div>
+
+      </div>
+
+      <div class="tab-bar">
+        <div class="tab-item"><i class="fas fa-home"></i>Início</div>
+        <div class="tab-item"><i class="fas fa-search"></i>Explorar</div>
+        <div class="tab-item"><i class="fas fa-plus-circle" style="font-size: 28px; color: var(--roxo);"></i></div>
+        <div class="tab-item"><i class="fas fa-calendar"></i>Agenda</div>
+        <div class="tab-item active"><i class="fas fa-user"></i>Perfil</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ===================================================== -->
+<!-- TELA 5: CHAT + AGENDAMENTO -->
+<!-- ===================================================== -->
+<div class="screens-grid">
+
+  <div class="screen-group">
+    <div class="screen-label">Chat</div>
+    <div class="phone">
+      <div class="notch"></div>
+      <div class="screen-content" style="padding-bottom: 80px;">
+
+        <div class="page-header" style="padding: 16px 20px;">
+          <div class="page-title" style="font-size: 22px;">Mensagens</div>
+        </div>
+
+        <div class="search-bar" style="margin-top: 0;">
+          <i class="fas fa-search" style="color: var(--cinza-400);"></i>
+          <input placeholder="Buscar conversas...">
+        </div>
+
+        <div class="chat-list">
+          <div class="chat-item">
+            <img src="https://i.pravatar.cc/80?img=5" class="chat-avatar" alt="" style="border-radius:50%;">
+            <div class="chat-info">
+              <div class="chat-name">Bar do Zé</div>
+              <div class="chat-preview">Perfeito! Confirmado dia 15/11 às 21h. Valor R$...</div>
+            </div>
+            <div class="chat-meta">
+              <div class="chat-time">10:42</div>
+              <div class="chat-badge">2</div>
+            </div>
+          </div>
+          <div class="chat-item">
+            <img src="https://i.pravatar.cc/80?img=8" class="chat-avatar" alt="" style="border-radius:50%;">
+            <div class="chat-info">
+              <div class="chat-name">Festival Rock SP</div>
+              <div class="chat-preview">Vamos fechar! Precisamos de 2 sets de 1h...</div>
+            </div>
+            <div class="chat-meta">
+              <div class="chat-time">Ontem</div>
+            </div>
+          </div>
+          <div class="chat-item">
+            <img src="https://i.pravatar.cc/80?img=15" class="chat-avatar" alt="" style="border-radius:50%;">
+            <div class="chat-info">
+              <div class="chat-name">Estúdio Batukerê</div>
+              <div class="chat-preview">Sala disponível quinta às 14h. Interesse?</div>
+            </div>
+            <div class="chat-meta">
+              <div class="chat-time">Seg</div>
+            </div>
+          </div>
+          <div class="chat-item">
+            <img src="https://i.pravatar.cc/80?img=22" class="chat-avatar" alt="" style="border-radius:50%;">
+            <div class="chat-info">
+              <div class="chat-name">Casamento Ana & Pedro</div>
+              <div class="chat-preview">Adorei o repertório! Vamos conversar?</div>
+            </div>
+            <div class="chat-meta">
+              <div class="chat-time">Dom</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="tab-bar">
+        <div class="tab-item"><i class="fas fa-home"></i>Início</div>
+        <div class="tab-item"><i class="fas fa-search"></i>Explorar</div>
+        <div class="tab-item"><i class="fas fa-plus-circle" style="font-size: 28px; color: var(--roxo);"></i></div>
+        <div class="tab-item"><i class="fas fa-calendar"></i>Agenda</div>
+        <div class="tab-item"><i class="fas fa-user"></i>Perfil</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================== -->
+  <!-- TELA 6: AGENDA (Airbnb Calendar) -->
+  <!-- ===================================================== -->
+  <div class="screen-group">
+    <div class="screen-label">Agenda</div>
+    <div class="phone">
+      <div class="notch"></div>
+      <div class="screen-content" style="padding-bottom: 80px;">
+
+        <div class="page-header">
+          <div class="page-title">Agenda</div>
+          <div class="page-subtitle">Seus shows e ensaios</div>
+        </div>
+
+        <!-- Credit Bar -->
+        <div class="credit-bar">
+          <div class="credit-label">Seus créditos</div>
+          <div class="credit-val"><i class="fas fa-coins" style="margin-right:8px;"></i>350</div>
+          <div class="credit-cta"><i class="fas fa-plus" style="margin-right:6px;"></i>Comprar mais</div>
+        </div>
+
+        <!-- Calendar -->
+        <div class="calendar">
+          <div class="cal-header">
+            <div class="cal-month">Setembro 2026</div>
+            <div class="cal-nav">
+              <i class="fas fa-chevron-left" style="color: var(--cinza-400); padding:4px;"></i>
+              <i class="fas fa-chevron-right" style="color: var(--cinza-400); padding:4px;"></i>
+            </div>
+          </div>
+          <div class="cal-grid">
+            <div class="cal-day-name">D</div>
+            <div class="cal-day-name">S</div>
+            <div class="cal-day-name">T</div>
+            <div class="cal-day-name">Q</div>
+            <div class="cal-day-name">Q</div>
+            <div class="cal-day-name">S</div>
+            <div class="cal-day-name">S</div>
+            <div class="cal-day muted">28</div>
+            <div class="cal-day muted">29</div>
+            <div class="cal-day muted">30</div>
+            <div class="cal-day muted">31</div>
+            <div class="cal-day">1</div>
+            <div class="cal-day">2</div>
+            <div class="cal-day">3</div>
+            <div class="cal-day">4</div>
+            <div class="cal-day">5</div>
+            <div class="cal-day">6</div>
+            <div class="cal-day">7</div>
+            <div class="cal-day today">8</div>
+            <div class="cal-day">9</div>
+            <div class="cal-day event">10</div>
+            <div class="cal-day">11</div>
+            <div class="cal-day">12</div>
+            <div class="cal-day">13</div>
+            <div class="cal-day event">14</div>
+            <div class="cal-day event">15</div>
+            <div class="cal-day">16</div>
+            <div class="cal-day">17</div>
+            <div class="cal-day">18</div>
+            <div class="cal-day">19</div>
+            <div class="cal-day">20</div>
+            <div class="cal-day">21</div>
+            <div class="cal-day">22</div>
+            <div class="cal-day">23</div>
+            <div class="cal-day event">24</div>
+            <div class="cal-day">25</div>
+            <div class="cal-day">26</div>
+            <div class="cal-day">27</div>
+            <div class="cal-day">28</div>
+            <div class="cal-day">29</div>
+            <div class="cal-day">30</div>
+          </div>
+        </div>
+
+        <!-- Upcoming Gigs -->
+        <div class="section-title">
+          Próximos eventos
+          <div class="section-link">Novo</div>
+        </div>
+
+        <div class="gig-card">
+          <div class="gig-header">
+            <div class="gig-date"><i class="fas fa-calendar-alt" style="margin-right:4px;"></i>Sáb, 10 Set — 20h</div>
+            <div class="gig-paid">R$ 1.200</div>
+          </div>
+          <div class="gig-title">Bar do Zé — Vila Madalena</div>
+          <div class="gig-venue"><i class="fas fa-map-marker-alt"></i> São Paulo, SP</div>
+          <div class="gig-info">
+            <span><i class="fas fa-music"></i> MPB + Autoral</span>
+            <span><i class="fas fa-clock"></i> 2 sets de 45min</span>
+          </div>
+        </div>
+
+        <div class="gig-card">
+          <div class="gig-header">
+            <div class="gig-date"><i class="fas fa-calendar-alt" style="margin-right:4px;"></i>Sáb, 15 Set — 14h</div>
+            <div class="gig-paid" style="color: var(--cinza-500);">Ensaio</div>
+          </div>
+          <div class="gig-title">Estúdio Batukerê</div>
+          <div class="gig-venue"><i class="fas fa-map-marker-alt"></i> Pinheiros, SP</div>
+          <div class="gig-info">
+            <span><i class="fas fa-door-open"></i> Sala B</span>
+            <span><i class="fas fa-clock"></i> 2h</span>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="tab-bar">
+        <div class="tab-item"><i class="fas fa-home"></i>Início</div>
+        <div class="tab-item"><i class="fas fa-search"></i>Explorar</div>
+        <div class="tab-item"><i class="fas fa-plus-circle" style="font-size: 28px; color: var(--roxo);"></i></div>
+        <div class="tab-item active"><i class="fas fa-calendar"></i>Agenda</div>
+        <div class="tab-item"><i class="fas fa-user"></i>Perfil</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================== -->
+  <!-- TELA 7: ESTÚDIOS -->
+  <!-- ===================================================== -->
+  <div class="screen-group">
+    <div class="screen-label">Explorar Estúdios</div>
+    <div class="phone">
+      <div class="notch"></div>
+      <div class="screen-content" style="padding-bottom: 80px;">
+
+        <div class="page-header">
+          <div class="page-title">Estúdios</div>
+          <div class="page-subtitle">Encontre seu espaço para ensaio</div>
+        </div>
+
+        <div class="search-bar" style="margin-top: 0;">
+          <i class="fas fa-search" style="color: var(--cinza-400);"></i>
+          <input placeholder="Buscar por nome, bairro, cidade...">
+        </div>
+
+        <div class="chips">
+          <div class="chip active">Todos</div>
+          <div class="chip">Com banda</div>
+          <div class="chip">Solo</div>
+          <div class="chip">Gravação</div>
+          <div class="chip">Hoje</div>
+        </div>
+
+        <div class="studio-card">
+          <div class="studio-img" style="background: linear-gradient(135deg, #4facfe, #00f2fe);">
+            <i class="fas fa-microphone" style="color: white;"></i>
+            <div class="studio-badge">-20% OFF</div>
+          </div>
+          <div class="studio-info">
+            <div class="studio-name">Estúdio Batukerê <i class="fas fa-check-circle" style="color: var(--roxo); font-size: 14px;"></i></div>
+            <div class="studio-details"><i class="fas fa-map-marker-alt" style="font-size: 11px;"></i> Pinheiros, SP • Sala com banda completa</div>
+            <div class="studio-price">
+              <div><span class="price-val">R$ 48</span><span class="price-unit">/hora</span></div>
+              <div style="font-size: 11px; color: var(--verde); font-weight: 600;">Disponível hoje</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="studio-card">
+          <div class="studio-img" style="background: linear-gradient(135deg, #43e97b, #38f9d7);">
+            <i class="fas fa-guitar" style="color: white;"></i>
+          </div>
+          <div class="studio-info">
+            <div class="studio-name">Groove Room</div>
+            <div class="studio-details"><i class="fas fa-map-marker-alt" style="font-size: 11px;"></i> Vila Madalena, SP • 2 salas</div>
+            <div class="studio-price">
+              <div><span class="price-val">R$ 35</span><span class="price-unit">/hora</span></div>
+              <div style="font-size: 11px; color: var(--verde); font-weight: 600;">Disponível amanhã</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="tab-bar">
+        <div class="tab-item"><i class="fas fa-home"></i>Início</div>
+        <div class="tab-item"><i class="fas fa-search"></i>Explorar</div>
+        <div class="tab-item"><i class="fas fa-plus-circle" style="font-size: 28px; color: var(--roxo);"></i></div>
+        <div class="tab-item"><i class="fas fa-calendar"></i>Agenda</div>
+        <div class="tab-item"><i class="fas fa-user"></i>Perfil</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ===================================================== -->
+<!-- DOCUMENTAÇÃO DE DESIGN -->
+<!-- ===================================================== -->
+<div class="doc-section">
+
+<h2>Princípios de Design — OnStage</h2>
+
+<p>O wireframe foi construído com base em <strong>padrões de mercado consolidados</strong>, combinando elementos de apps que os usuários já conhecem. O objetivo é que qualquer pessoa abra o app e pense <em>"já sei usar isso"</em>.</p>
+
+<div class="principle-box">
+  <h4>1. Feed estilo Instagram/TikTok</h4>
+  <p>A tela principal é um scroll infinito com cards de músicos (foto, vídeo, música). Ações familiares: curtir, comentar, compartilhar, salvar. O usuário já sabe o que fazer sem tutorial.</p>
+</div>
+
+<div class="principle-box">
+  <h4>2. Busca estilo Spotify/Uber</h4>
+  <p>Explorar usa chips de filtro (gênero, estilo) + busca textual + mapa. O mesmo padrão de apps de streaming e locação. Filtros visuais, resultado imediato.</p>
+</div>
+
+<div class="principle-box">
+  <h4>3. Perfil estilo Instagram</h4>
+  <p>Avatar, bio, estatísticas (shows/seguir/rating), grid de posts. O formato é universal — qualquer rede social usa isso. Músicos já estão acostumados.</p>
+</div>
+
+<div class="principle-box">
+  <h4>4. Chat estilo WhatsApp/iMessage</h4>
+  <p>Lista de conversas com avatar, preview da última mensagem, horário, badge de não lido. O padrão de mensageria é onipresente — zero curva de aprendizado.</p>
+</div>
+
+<div class="principle-box">
+  <h4>5. Agenda estilo Google Calendar/Airbnb</h4>
+  <p>Calendário visual com dias marcados, eventos abaixo. O formato de calendário é universal. O destaque visual para dias com evento é o mesmo padrão de apps de reserva.</p>
+</div>
+
+<div class="principle-box">
+  <h4>6. Bottom Tab Bar (5 ícones)</h4>
+  <p>Início, Explorar, [+] (ação principal), Agenda, Perfil. É o padrão ouro de navegação mobile (Instagram, Twitter, Spotify). O botão central destacado em roxo é a ação primária (postar/contratar).</p>
+</div>
+
+<div class="principle-box">
+  <h4>7. Barra de Créditos</h4>
+  <p>No topo da agenda e perfil, uma barra roxa com saldo de créditos — parecida com gift cards e apps de finanças. Deixa claro o modelo de forma visual e não intrusiva.</p>
+</div>
+
+<h2 style="margin-top: 32px;">Paleta e Tipografia</h2>
+
+<ul>
+  <li><strong>Roxo (#533afd):</strong> cor primária, CTAs, logo, destaques</li>
+  <li><strong>Amarelo (#fbbf24):</strong> alertas, ratings, badges, crédito</li>
+  <li><strong>Verde (#10b981):</strong> confirmação, disponibilidade, preço</li>
+  <li><strong>Vermelho (#ef4444):</strong> likes/notificações</li>
+  <li><strong>Inter:</strong> fonte principal — clean, moderna, altamente legível em mobile</li>
+</ul>
+
+<h2 style="margin-top: 32px;">Próximos Passos</h2>
+
+<ul>
+  <li><strong>Validação:</strong> mostrar este wireframe para 5–10 músicos e contratantes. Coletar feedback.</li>
+  <li><strong>Figma:</strong> transformar em protótipo interativo de alta fidelidade.</li>
+  <li><strong>Teste de usabilidade:</strong> observar pessoas usando o protótipo sem instruções.</li>
+  <li><strong>MVP técnico:</strong> implementar as telas 1, 2, 3 e 4 como versão alpha.</li>
+  <li><strong>GitHub Pages:</strong> publicar este wireframe online para acesso pelo celular.</li>
+</ul>
+
+<p style="margin-top: 24px; font-size: 13px; color: var(--cinza-400); text-align: center;">
+  Wireframe gerado em 03/09/2026 — OnStage © 2026
+</p>
+
+</div>
+
+</body>
+</html>
