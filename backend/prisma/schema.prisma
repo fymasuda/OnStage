@@ -1,0 +1,261 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String    @id @default(cuid())
+  email         String    @unique
+  phone         String?   @unique
+  passwordHash  String
+  name          String
+  avatarUrl     String?
+  bio           String?
+  city          String?
+  state         String?
+  latitude      Float?
+  longitude     Float?
+  credits       Int       @default(50)
+  isVerified    Boolean   @default(false)
+  twoFactorEnabled Boolean @default(false)
+  twoFactorSecret  String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  // Relations
+  pages         Page[]
+  messagesSent  Message[] @relation("sentMessages")
+  messagesRecv  Message[] @relation("receivedMessages")
+  bookings      Booking[]
+  reviewsGiven  Review[]  @relation("reviewer")
+  reviewsRecv   Review[]  @relation("reviewee")
+  publications  Publication[]
+  likes         Like[]
+  comments      Comment[]
+  notifications Notification[]
+  checkIns      CheckIn[]
+
+  @@map("users")
+}
+
+model Page {
+  id            String    @id @default(cuid())
+  userId        String
+  type          PageType
+  name          String
+  slug          String    @unique
+  description   String?
+  genre         String[]
+  photoUrl      String?
+  coverUrl      String?
+  city          String?
+  state         String?
+  latitude      Float?
+  longitude     Float?
+  // Band-specific
+  members       Json?     // [{name, role, photoUrl}]
+  spotifyUrl    String?
+  instagramUrl  String?
+  repertoire    String?   // COVERS, AUTORAIS, MIX
+  // Studio-specific
+  rooms         Json?     // [{name, capacity, equipment[], pricePerHour}]
+  hasStage      Boolean   @default(false)
+  hasBar        Boolean   @default(false)
+  // Venue-specific
+  capacity      Int?
+  coverCharge   Decimal?  @db.Decimal(10, 2)
+  // Booking
+  priceMin      Decimal?  @db.Decimal(10, 2)
+  priceMax      Decimal?  @db.Decimal(10, 2)
+  rating        Float     @default(0)
+  reviewCount   Int       @default(0)
+  showCount     Int       @default(0)
+  isActive      Boolean   @default(true)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  user          User      @relation(fields: [userId], references: [id])
+  bookings      Booking[]
+  events        Event[]
+
+  @@map("pages")
+}
+
+enum PageType {
+  MUSICIAN
+  BAND
+  STUDIO
+  VENUE
+  EVENT
+}
+
+model Booking {
+  id            String    @id @default(cuid())
+  pageId        String
+  userId        String
+  type          BookingType
+  status        BookingStatus @default(PENDING)
+  date          DateTime
+  startTime     DateTime
+  endTime       DateTime
+  price         Decimal   @db.Decimal(10, 2)
+  notes         String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  page          Page      @relation(fields: [pageId], references: [id])
+  user          User      @relation(fields: [userId], references: [id])
+  review        Review?
+
+  @@map("bookings")
+}
+
+enum BookingType {
+  SHOW
+  REHEARSAL
+  STUDIO_SESSION
+}
+
+enum BookingStatus {
+  PENDING
+  CONFIRMED
+  CANCELLED
+  COMPLETED
+}
+
+model Review {
+  id            String    @id @default(cuid())
+  bookingId     String    @unique
+  reviewerId    String
+  revieweeId    String
+  rating        Int       // 1-5
+  comment       String?
+  createdAt     DateTime  @default(now())
+
+  booking       Booking   @relation(fields: [bookingId], references: [id])
+  reviewer      User      @relation("reviewer", fields: [reviewerId], references: [id])
+  reviewee      User      @relation("reviewee", fields: [revieweeId], references: [id])
+
+  @@map("reviews")
+}
+
+model Message {
+  id            String    @id @default(cuid())
+  senderId      String
+  receiverId    String
+  content       String
+  isRead        Boolean   @default(false)
+  createdAt     DateTime  @default(now())
+
+  sender        User      @relation("sentMessages", fields: [senderId], references: [id])
+  receiver      User      @relation("receivedMessages", fields: [receiverId], references: [id])
+
+  @@map("messages")
+}
+
+model Publication {
+  id            String    @id @default(cuid())
+  userId        String
+  type          PubType
+  content       String?
+  mediaUrl      String?
+  mediaType     String?   // IMAGE, VIDEO
+  createdAt     DateTime  @default(now())
+
+  user          User      @relation(fields: [userId], references: [id])
+  likes         Like[]
+  comments      Comment[]
+
+  @@map("publications")
+}
+
+enum PubType {
+  TEXT
+  PHOTO
+  VIDEO
+  LINK
+}
+
+model Like {
+  id            String    @id @default(cuid())
+  userId        String
+  publicationId String
+  createdAt     DateTime  @default(now())
+
+  user          User      @relation(fields: [userId], references: [id])
+  publication   Publication @relation(fields: [publicationId], references: [id])
+
+  @@unique([userId, publicationId])
+  @@map("likes")
+}
+
+model Comment {
+  id            String    @id @default(cuid())
+  userId        String
+  publicationId String
+  content       String
+  createdAt     DateTime  @default(now())
+
+  user          User      @relation(fields: [userId], references: [id])
+  publication   Publication @relation(fields: [publicationId], references: [id])
+
+  @@map("comments")
+}
+
+model Event {
+  id            String    @id @default(cuid())
+  pageId        String
+  name          String
+  description   String?
+  date          DateTime
+  startTime     DateTime
+  endTime       DateTime
+  genre         String
+  coverCharge   Decimal   @db.Decimal(10, 2)
+  isCompetition Boolean   @default(false)
+  status        EventStatus @default(SCHEDULED)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  page          Page      @relation(fields: [pageId], references: [id])
+
+  @@map("events")
+}
+
+enum EventStatus {
+  SCHEDULED
+  ONGOING
+  COMPLETED
+  CANCELLED
+}
+
+model Notification {
+  id            String    @id @default(cuid())
+  userId        String
+  type          String    // BOOKING, MESSAGE, REVIEW, EVENT, SYSTEM
+  title         String
+  body          String
+  data          Json?
+  isRead        Boolean   @default(false)
+  createdAt     DateTime  @default(now())
+
+  user          User      @relation(fields: [userId], references: [id])
+
+  @@map("notifications")
+}
+
+model CheckIn {
+  id            String    @id @default(cuid())
+  userId        String
+  pageId        String    // Estúdio/venue onde fez check-in
+  discountApplied Boolean @default(false)
+  createdAt     DateTime  @default(now())
+
+  user          User      @relation(fields: [userId], references: [id])
+
+  @@map("check_ins")
+}

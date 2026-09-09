@@ -1,0 +1,33 @@
+{
+  "expo": {
+    "name": "OnStage",
+    "slug": "onstage",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/icon.png",
+    "scheme": "onstage",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "backgroundColor": "#533afd"
+    },
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.onstage.app"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#533afd"
+      },
+      "package": "com.onstage.app"
+    },
+    "web": {
+      "favicon": "./assets/images/favicon.png",
+      "bundler": "metro"
+    },
+    "plugins": [
+      "expo-router",
+      "expo-secure-store"
+    ]
+  }
+}

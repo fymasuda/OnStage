@@ -1,0 +1,1 @@
+{"jsonrpc":"2.0","method":"tools/call","params":{"name":"execute_code","arguments":{"code":"return { pages: penpotUtils.getPages(), selection: penpot.selection.map(function(s) { return s.name; }) };"},"id":7}

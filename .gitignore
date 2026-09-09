@@ -1,24 +1,14 @@
-# Python
-__pycache__/
-*.py[cod]
-*.egg-info/
-venv/
+node_modules/
 .env
-
-# IDE
-.vscode/
-.idea/
-*.swp
-
-# OS
-Thumbs.db
+.env.local
+.env.production
+*.log
 .DS_Store
-desktop.ini
-
-# Build
-build/
+.idea/
+.vscode/
+*.swp
 dist/
-*.egg
-
-# Don't ignore assets needed for docs
-!documento/assets/*.png
+build/
+.expo/
+web-build/
+coverage/
