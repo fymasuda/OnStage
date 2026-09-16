@@ -1,0 +1,1001 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OnStage — Wireframe v2</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+:root {
+  --roxo: #533afd;
+  --roxo-light: #7c5cff;
+  --roxo-dark: #3b28c4;
+  --amarelo: #fbbf24;
+  --amarelo-dark: #d97706;
+  --branco: #ffffff;
+  --cinza-50: #f9fafb;
+  --cinza-100: #f3f4f6;
+  --cinza-200: #e5e7eb;
+  --cinza-300: #d1d5db;
+  --cinza-400: #9ca3af;
+  --cinza-500: #6b7280;
+  --cinza-700: #374151;
+  --cinza-900: #111827;
+  --verde: #10b981;
+  --vermelho: #ef4444;
+  --radius: 16px;
+  --radius-sm: 10px;
+  --shadow: 0 2px 12px rgba(0,0,0,0.08);
+  --shadow-lg: 0 8px 30px rgba(0,0,0,0.12);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Inter', -apple-system, sans-serif;
+  background: var(--cinza-100);
+  color: var(--cinza-900);
+  min-height: 100vh;
+}
+
+/* === RESPONSIVE LAYOUT === */
+.app-frame {
+  display: flex;
+  gap: 32px;
+  padding: 32px;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+.device-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--cinza-500);
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+/* Mobile */
+.mobile-view {
+  width: 375px;
+  flex-shrink: 0;
+}
+
+/* Desktop / Web */
+.web-view {
+  flex: 1;
+  min-width: 500px;
+  max-width: 800px;
+}
+
+/* === PHONE MOCKUP === */
+.phone {
+  width: 375px;
+  height: 812px;
+  background: var(--branco);
+  border-radius: 40px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: var(--shadow-lg);
+  border: 3px solid var(--cinza-300);
+}
+.notch {
+  width: 140px; height: 28px;
+  background: var(--cinza-900);
+  border-radius: 0 0 18px 18px;
+  margin: 0 auto;
+  position: absolute;
+  top: 0; left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+}
+.screen-content {
+  padding: 44px 0 80px;
+  height: 100%;
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+.screen-content::-webkit-scrollbar { display: none; }
+
+/* === WEB SHELL === */
+.web-shell {
+  background: var(--branco);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-lg);
+  min-height: 812px;
+  overflow: hidden;
+  position: relative;
+}
+.web-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  border-bottom: 1px solid var(--cinza-200);
+}
+.web-logo {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--roxo);
+}
+.web-logo span { color: var(--amarelo); }
+.web-nav {
+  display: flex;
+  gap: 6px;
+}
+.web-nav-btn {
+  padding: 8px 16px;
+  border: none;
+  background: transparent;
+  color: var(--cinza-500);
+  font-weight: 600;
+  font-size: 13px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+.web-nav-btn:hover { background: var(--cinza-100); color: var(--roxo); }
+.web-nav-btn.active { background: var(--roxo); color: var(--branco); }
+.web-chat-icon {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: var(--roxo);
+  color: var(--branco);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  cursor: pointer;
+}
+.web-content {
+  padding: 24px;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* === GLOBAL HEADER === */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+}
+.header-title {
+  font-size: 22px;
+  font-weight: 700;
+}
+.header-subtitle {
+  font-size: 12px;
+  color: var(--cinza-500);
+}
+.header-actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+.icon-btn {
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  background: var(--cinza-50);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  color: var(--cinza-700);
+  cursor: pointer;
+  position: relative;
+}
+.icon-btn .badge {
+  position: absolute;
+  top: -2px; right: -2px;
+  width: 18px; height: 18px;
+  background: var(--vermelho);
+  color: var(--branco);
+  border-radius: 50%;
+  font-size: 10px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* === TAB BAR === */
+.tab-bar {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  display: flex;
+  justify-content: space-around;
+  padding: 12px 0 24px;
+  background: var(--branco);
+  border-top: 1px solid var(--cinza-200);
+}
+.tab-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  font-size: 10px;
+  color: var(--cinza-400);
+  cursor: pointer;
+}
+.tab-item i { font-size: 18px; }
+.tab-item.active { color: var(--roxo); }
+.tab-item.center i {
+  font-size: 28px;
+  color: var(--roxo);
+}
+
+/* === SCREENS === */
+.screen { display: none; }
+.screen.active { display: block; }
+
+/* === SEARCH BAR WITH FILTER === */
+.search-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 20px 16px;
+}
+.search-bar {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  background: var(--cinza-50);
+  border: 1px solid var(--cinza-200);
+  border-radius: var(--radius-sm);
+}
+.search-bar input {
+  border: none;
+  background: transparent;
+  outline: none;
+  font-size: 14px;
+  width: 100%;
+  font-family: inherit;
+}
+.filter-btn {
+  width: 44px; height: 44px;
+  border-radius: var(--radius-sm);
+  background: var(--roxo);
+  color: var(--branco);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+/* === TOGGLE VIEW === */
+.view-toggle {
+  display: flex;
+  gap: 0;
+  margin: 0 20px 16px;
+  background: var(--cinza-100);
+  border-radius: var(--radius-sm);
+  padding: 3px;
+}
+.view-btn {
+  flex: 1;
+  padding: 10px;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  color: var(--cinza-500);
+}
+.view-btn.active {
+  background: var(--branco);
+  color: var(--roxo);
+  box-shadow: var(--shadow);
+}
+
+/* === FEED CARD (Social) === */
+.feed-post {
+  background: var(--branco);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  margin: 0 20px 16px;
+  overflow: hidden;
+}
+.feed-post-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px 10px;
+}
+.feed-avatar {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--branco);
+}
+.feed-post-info { flex: 1; }
+.feed-post-name {
+  font-size: 14px;
+  font-weight: 600;
+}
+.feed-post-meta {
+  font-size: 11px;
+  color: var(--cinza-400);
+}
+.feed-post-img {
+  width: 100%;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 64px;
+}
+.feed-post-actions {
+  display: flex;
+  gap: 16px;
+  padding: 12px 16px;
+  font-size: 18px;
+  color: var(--cinza-700);
+}
+.feed-post-actions i { cursor: pointer; }
+.feed-post-actions i:hover { color: var(--roxo); }
+.feed-post-likes {
+  padding: 0 16px 4px;
+  font-size: 13px;
+  font-weight: 600;
+}
+.feed-post-caption {
+  padding: 0 16px 14px;
+  font-size: 13px;
+  color: var(--cinza-700);
+  line-height: 1.5;
+}
+
+/* === EXPLORE CARD === */
+.explore-card {
+  display: flex;
+  gap: 12px;
+  padding: 16px;
+  margin: 0 20px 12px;
+  background: var(--branco);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+.explore-card-img {
+  width: 70px; height: 70px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  color: var(--branco);
+}
+.explore-card-info { flex: 1; }
+.explore-card-title {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+.explore-card-subtitle {
+  font-size: 12px;
+  color: var(--cinza-500);
+  margin-bottom: 4px;
+}
+.explore-card-rating {
+  font-size: 12px;
+  color: var(--amarelo);
+}
+.explore-card-price {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--roxo);
+  text-align: right;
+}
+
+/* === MAP VIEW === */
+.map-view {
+  margin: 0 20px 16px;
+  height: 300px;
+  background: linear-gradient(135deg, #e0e7ff, #c7d2fe);
+  border-radius: var(--radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+.map-pin {
+  position: absolute;
+  width: 36px; height: 36px;
+  background: var(--roxo);
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(-45deg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--branco);
+  font-size: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+.map-pin::after {
+  content: '';
+  position: absolute;
+  width: 12px; height: 12px;
+  background: var(--branco);
+  border-radius: 50%;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* === PROFILE === */
+.profile-header {
+  text-align: center;
+  padding: 20px;
+}
+.avatar {
+  width: 90px; height: 90px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 36px;
+  margin: 0 auto 12px;
+}
+.profile-name {
+  font-size: 20px;
+  font-weight: 700;
+}
+.profile-genre {
+  font-size: 12px;
+  color: var(--cinza-500);
+  margin-bottom: 16px;
+}
+.stats {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  margin-bottom: 16px;
+}
+.stat-num { font-size: 18px; font-weight: 700; }
+.stat-label { font-size: 11px; color: var(--cinza-500); }
+.profile-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+.btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.btn-primary { background: var(--roxo); color: var(--branco); }
+.btn-secondary { background: var(--cinza-100); color: var(--cinza-700); }
+.btn-outline {
+  background: transparent;
+  border: 2px solid var(--roxo);
+  color: var(--roxo);
+}
+
+/* === CHAT === */
+.chat-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--cinza-100);
+}
+.chat-avatar {
+  width: 48px; height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  color: var(--branco);
+  font-weight: 700;
+}
+.chat-info { flex: 1; }
+.chat-name { font-size: 14px; font-weight: 600; }
+.chat-preview { font-size: 12px; color: var(--cinza-500); }
+.chat-meta { text-align: right; }
+.chat-time { font-size: 11px; color: var(--cinza-400); }
+.chat-badge {
+  width: 20px; height: 20px;
+  background: var(--roxo);
+  color: var(--branco);
+  border-radius: 50%;
+  font-size: 10px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 4px 0 0 auto;
+}
+
+/* === CALENDAR === */
+.calendar { padding: 0 20px 16px; }
+.cal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+.cal-month { font-size: 16px; font-weight: 700; }
+.cal-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+  text-align: center;
+}
+.cal-day-name { font-size: 10px; font-weight: 600; color: var(--cinza-400); padding: 8px 0; }
+.cal-day { font-size: 12px; padding: 8px; border-radius: 8px; cursor: pointer; }
+.cal-day.today { background: var(--roxo); color: var(--branco); font-weight: 700; }
+.cal-day.event { background: var(--amarelo); color: var(--cinza-900); font-weight: 700; }
+.cal-day.muted { color: var(--cinza-300); }
+
+/* === GIG CARD === */
+.gig-card {
+  background: var(--branco);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  margin: 0 20px 12px;
+  padding: 16px;
+}
+.gig-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+.gig-date { font-size: 11px; color: var(--cinza-500); }
+.gig-price { font-size: 14px; font-weight: 700; color: var(--roxo); }
+.gig-title { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+.gig-venue { font-size: 11px; color: var(--cinza-400); margin-bottom: 8px; }
+.gig-info { font-size: 11px; color: var(--cinza-500); display: flex; gap: 12px; }
+
+/* === FORM === */
+.form-group { padding: 12px 20px; }
+.form-label { font-size: 12px; font-weight: 600; color: var(--cinza-700); margin-bottom: 6px; }
+.form-input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid var(--cinza-200);
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  font-family: inherit;
+}
+.duration-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 20px;
+}
+.duration-input {
+  width: 80px;
+  padding: 12px;
+  border: 1px solid var(--cinza-200);
+  border-radius: var(--radius-sm);
+  font-size: 16px;
+  font-family: inherit;
+  text-align: center;
+}
+.duration-label { font-size: 14px; font-weight: 500; color: var(--cinza-700); }
+.summary-box {
+  background: var(--cinza-50);
+  border-radius: var(--radius-sm);
+  padding: 16px;
+  margin: 16px 20px;
+}
+.summary-title { font-size: 13px; font-weight: 700; margin-bottom: 8px; }
+.summary-line { font-size: 12px; color: var(--cinza-500); margin-bottom: 4px; }
+.summary-total { font-size: 14px; font-weight: 700; color: var(--roxo); margin-top: 8px; }
+
+/* === POPUP / MODAL === */
+.popup-overlay {
+  display: none;
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 20;
+  align-items: flex-end;
+  justify-content: center;
+}
+.popup-overlay.active { display: flex; }
+.popup-content {
+  background: var(--branco);
+  border-radius: 24px 24px 0 0;
+  padding: 24px;
+  width: 100%;
+  max-width: 400px;
+}
+.popup-title {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  text-align: center;
+}
+.popup-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+}
+.popup-item:hover { background: var(--cinza-50); }
+.popup-item i {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  color: var(--branco);
+}
+
+/* === FILTER MODAL === */
+.filter-modal {
+  display: none;
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: var(--branco);
+  z-index: 20;
+  padding: 20px;
+  overflow-y: auto;
+}
+.filter-modal.active { display: block; }
+.filter-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.filter-title { font-size: 18px; font-weight: 700; }
+.filter-close {
+  font-size: 20px;
+  cursor: pointer;
+  color: var(--cinza-500);
+}
+.filter-section {
+  margin-bottom: 20px;
+}
+.filter-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--cinza-700);
+  margin-bottom: 8px;
+}
+.filter-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.filter-chip {
+  padding: 8px 16px;
+  background: var(--cinza-50);
+  border: 1px solid var(--cinza-200);
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+}
+.filter-chip.selected {
+  background: var(--roxo);
+  color: var(--branco);
+  border-color: var(--roxo);
+}
+.filter-range {
+  width: 100%;
+  margin: 8px 0;
+}
+.filter-apply {
+  width: 100%;
+  padding: 14px;
+  background: var(--roxo);
+  color: var(--branco);
+  border: none;
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* === WEB EXPLORE LAYOUT === */
+.web-explore-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+}
+.web-explore-card {
+  background: var(--branco);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 20px;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.web-explore-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+.web-explore-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 12px;
+}
+.web-explore-avatar {
+  width: 56px; height: 56px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--branco);
+}
+.web-explore-info { flex: 1; }
+.web-explore-name { font-size: 16px; font-weight: 700; }
+.web-explore-subtitle { font-size: 13px; color: var(--cinza-500); }
+.web-explore-rating { font-size: 13px; color: var(--amarelo); }
+.web-explore-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 12px;
+  border-top: 1px solid var(--cinza-100);
+}
+.web-explore-price { font-size: 16px; font-weight: 700; color: var(--roxo); }
+.web-explore-btn {
+  padding: 8px 16px;
+  background: var(--roxo);
+  color: var(--branco);
+  border: none;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* === WEB FEED === */
+.web-feed {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 16px;
+}
+
+/* === WEB CHAT (Sidebar) === */
+.web-chat-layout {
+  display: flex;
+  height: 600px;
+  border: 1px solid var(--cinza-200);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.web-chat-sidebar {
+  width: 280px;
+  border-right: 1px solid var(--cinza-200);
+  overflow-y: auto;
+}
+.web-chat-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.web-chat-messages {
+  flex: 1;
+  padding: 20px;
+  background: var(--cinza-50);
+}
+.web-chat-input {
+  padding: 16px;
+  border-top: 1px solid var(--cinza-200);
+  display: flex;
+  gap: 10px;
+}
+.web-chat-input input {
+  flex: 1;
+  padding: 12px 16px;
+  border: 1px solid var(--cinza-200);
+  border-radius: 20px;
+  font-size: 14px;
+  outline: none;
+}
+.chat-msg {
+  margin-bottom: 12px;
+  display: flex;
+}
+.chat-msg.sent { justify-content: flex-end; }
+.chat-msg-bubble {
+  max-width: 70%;
+  padding: 10px 14px;
+  border-radius: 16px;
+  font-size: 13px;
+  line-height: 1.4;
+}
+.chat-msg.received .chat-msg-bubble {
+  background: var(--branco);
+  border: 1px solid var(--cinza-200);
+}
+.chat-msg.sent .chat-msg-bubble {
+  background: var(--roxo);
+  color: var(--branco);
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 900px) {
+  .app-frame { flex-direction: column; padding: 16px; }
+  .mobile-view { margin: 0 auto; }
+  .web-view { min-width: 100%; }
+  .web-explore-grid { grid-template-columns: 1fr; }
+  .web-feed { grid-template-columns: 1fr; }
+  .web-chat-layout { flex-direction: column; }
+  .web-chat-sidebar { width: 100%; max-height: 200px; }
+}
+</style>
+<!-- ==================== MOBILE: FEED ==================== -->
+<div class="mobile-view">
+  <div class="device-label">Mobile — Feed</div>
+  <div class="phone">
+    <div class="notch"></div>
+    <div class="screen-content">
+      <div id="feed" class="screen active">
+        <div class="header">
+          <div>
+            <div class="header-title">OnStage</div>
+            <div class="header-subtitle">Onde a música encontra público</div>
+          </div>
+          <div class="header-actions">
+            <div class="icon-btn" onclick="showWebScreen('chat')"><i class="fas fa-comment-dots"></i><span class="badge">3</span></div>
+            <div class="icon-btn"><i class="fas fa-bell"></i></div>
+          </div>
+        </div>
+
+        <!-- Feed Posts -->
+        <div class="feed-post">
+          <div class="feed-post-header">
+            <div class="feed-avatar" style="background:var(--roxo-light)">BA</div>
+            <div class="feed-post-info">
+              <div class="feed-post-name">Banda Aurora</div>
+              <div class="feed-post-meta">MPB • Autoral • 2h atrás</div>
+            </div>
+            <i class="fas fa-ellipsis-h" style="color:var(--cinza-400);cursor:pointer"></i>
+          </div>
+          <div class="feed-post-img" style="background:linear-gradient(135deg,var(--roxo-light),var(--roxo-dark))">🎸🎤</div>
+          <div class="feed-post-actions">
+            <i class="far fa-heart" onclick="toggleHeart(this)"></i>
+            <i class="far fa-comment"></i>
+            <i class="far fa-paper-plane"></i>
+            <i class="far fa-bookmark" style="margin-left:auto"></i>
+          </div>
+          <div class="feed-post-likes">245 curtidas</div>
+          <div class="feed-post-caption"><strong>bandaaurora</strong> Ensaiando para o show de sábado! 🎶🔥 Quem vem aí? #MPB #Autoral #OnStage</div>
+        </div>
+
+        <div class="feed-post">
+          <div class="feed-post-header">
+            <div class="feed-avatar" style="background:var(--amarelo);color:var(--cinza-900)">SR</div>
+            <div class="feed-post-info">
+              <div class="feed-post-name">Samba de Raiz</div>
+              <div class="feed-post-meta">Samba • Pagode • 5h atrás</div>
+            </div>
+            <i class="fas fa-ellipsis-h" style="color:var(--cinza-400);cursor:pointer"></i>
+          </div>
+          <div class="feed-post-img" style="background:linear-gradient(135deg,var(--amarelo),var(--amarelo-dark))">🥁🎵</div>
+          <div class="feed-post-actions">
+            <i class="far fa-heart" onclick="toggleHeart(this)"></i>
+            <i class="far fa-comment"></i>
+            <i class="far fa-paper-plane"></i>
+            <i class="far fa-bookmark" style="margin-left:auto"></i>
+          </div>
+          <div class="feed-post-likes">189 curtidas</div>
+          <div class="feed-post-caption"><strong>sambaderaiz</strong> Obrigado pelo público incrível ontem! Vocês são demais! 🙏💛 #Samba #Pagode</div>
+        </div>
+      </div>
+    </div>
+    <div class="tab-bar">
+      <div class="tab-item active"><i class="fas fa-home"></i>Início</div>
+      <div class="tab-item"><i class="fas fa-search"></i>Explorar</div>
+      <div class="tab-item center" onclick="document.getElementById('popup').classList.add('active')"><i class="fas fa-plus-circle"></i></div>
+      <div class="tab-item"><i class="fas fa-calendar"></i>Agenda</div>
+      <div class="tab-item"><i class="fas fa-user"></i>Perfil</div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== WEB: FEED ==================== -->
+<div class="web-view">
+  <div class="device-label">Web — Feed</div>
+  <div class="web-shell">
+    <div class="web-header">
+      <div class="web-logo">OnStage<span>.</span></div>
+      <nav class="web-nav">
+        <button class="web-nav-btn active">Início</button>
+        <button class="web-nav-btn">Explorar</button>
+        <button class="web-nav-btn">Agenda</button>
+        <button class="web-nav-btn">Perfil</button>
+      </nav>
+      <div style="display:flex;gap:12px;align-items:center">
+        <div class="web-chat-icon" title="Mensagens"><i class="fas fa-comment-dots"></i></div>
+        <div style="width:36px;height:36px;border-radius:50%;background:var(--roxo);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:12px">FM</div>
+      </div>
+    </div>
+    <div class="web-content">
+      <div class="web-feed">
+        <div class="feed-post">
+          <div class="feed-post-header">
+            <div class="feed-avatar" style="background:var(--roxo-light)">BA</div>
+            <div class="feed-post-info">
+              <div class="feed-post-name">Banda Aurora</div>
+              <div class="feed-post-meta">MPB • Autoral • 2h atrás</div>
+            </div>
+          </div>
+          <div class="feed-post-img" style="background:linear-gradient(135deg,var(--roxo-light),var(--roxo-dark));height:240px">🎸🎤</div>
+          <div class="feed-post-actions">
+            <i class="far fa-heart"></i>
+            <i class="far fa-comment"></i>
+            <i class="far fa-paper-plane"></i>
+            <i class="far fa-bookmark" style="margin-left:auto"></i>
+          </div>
+          <div class="feed-post-likes">245 curtidas</div>
+          <div class="feed-post-caption"><strong>bandaaurora</strong> Ensaiando para o show de sábado! 🎶🔥 Quem vem aí?</div>
+        </div>
+        <div class="feed-post">
+          <div class="feed-post-header">
+            <div class="feed-avatar" style="background:var(--amarelo);color:var(--cinza-900)">SR</div>
+            <div class="feed-post-info">
+              <div class="feed-post-name">Samba de Raiz</div>
+              <div class="feed-post-meta">Samba • Pagode • 5h atrás</div>
+            </div>
+          </div>
+          <div class="feed-post-img" style="background:linear-gradient(135deg,var(--amarelo),var(--amarelo-dark));height:240px">🥁🎵</div>
+          <div class="feed-post-actions">
+            <i class="far fa-heart"></i>
+            <i class="far fa-comment"></i>
+            <i class="far fa-paper-plane"></i>
+            <i class="far fa-bookmark" style="margin-left:auto"></i>
+          </div>
+          <div class="feed-post-likes">189 curtidas</div>
+          <div class="feed-post-caption"><strong>sambaderaiz</strong> Obrigado pelo público incrível ontem! 🙏💛</div>
+        </div>
+        <div class="feed-post">
+          <div class="feed-post-header">
+            <div class="feed-avatar" style="background:linear-gradient(135deg,#10b981,#059669)">VZ</div>
+            <div class="feed-post-info">
+              <div class="feed-post-name">Voz & Violão</div>
+              <div class="feed-post-meta">MPB • Acústico • 1 dia</div>
+            </div>
+          </div>
+          <div class="feed-post-img" style="background:linear-gradient(135deg,#10b981,#059669);height:240px">🎶🎵</div>
+          <div class="feed-post-actions">
+            <i class="far fa-heart"></i>
+            <i class="far fa-comment"></i>
+            <i class="far fa-paper-plane"></i>
+            <i class="far fa-bookmark" style="margin-left:auto"></i>
+          </div>
+          <div class="feed-post-likes">312 curtidas</div>
+          <div class="feed-post-caption"><strong>vozeviolao</strong> Single novo sexta no Spotify! Link na bio 🎵✨</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div> <!-- end app-frame -->
+
+<script>
+function toggleHeart(el) {
+  el.classList.toggle('far');
+  el.classList.toggle('fas');
+  el.style.color = el.classList.contains('fas') ? 'var(--vermelho)' : '';
+}
+</script>
+
+</body>
+</html>

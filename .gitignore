@@ -12,3 +12,4 @@ build/
 .expo/
 web-build/
 coverage/
+~$*
