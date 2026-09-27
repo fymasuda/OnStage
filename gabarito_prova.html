@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gabarito — Concurso FATEC</title>
+<style>
+  :root { --roxo: #533afd; --amarelo: #fbbf24; --roxo-escuro: #3a2bd6; --cinza: #f5f5f5; --texto: #1a1a2e; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', system-ui, sans-serif; background: #f0f0f5; color: var(--texto); line-height: 1.6; }
+  header { background: linear-gradient(135deg, var(--roxo), var(--roxo-escuro)); color: #fff; padding: 2rem 1rem; text-align: center; }
+  header h1 { font-size: 1.8rem; margin-bottom: .3rem; }
+  header p { opacity: .9; font-size: .95rem; }
+  .container { max-width: 900px; margin: 0 auto; padding: 1rem; }
+  .resume-bar { background: #fff; border-radius: 12px; padding: 1.2rem; margin: 1.5rem 0; display: flex; flex-wrap: wrap; gap: 1rem; justify-content: space-around; box-shadow: 0 2px 12px rgba(0,0,0,.08); }
+  .resume-bar .item { text-align: center; }
+  .resume-bar .num { font-size: 2rem; font-weight: 800; color: var(--roxo); }
+  .resume-bar .label { font-size: .8rem; color: #666; text-transform: uppercase; letter-spacing: .5px; }
+  section { background: #fff; border-radius: 12px; padding: 1.5rem; margin: 1.5rem 0; box-shadow: 0 2px 12px rgba(0,0,0,.08); }
+  section h2 { color: var(--roxo); border-bottom: 3px solid var(--amarelo); padding-bottom: .5rem; margin-bottom: 1rem; font-size: 1.3rem; }
+  .questao { border-left: 4px solid var(--roxo); padding: .8rem 1rem; margin: 1rem 0; background: var(--cinza); border-radius: 0 8px 8px 0; }
+  .questao h3 { font-size: .95rem; margin-bottom: .5rem; color: var(--roxo-escuro); }
+  .questao p { margin: .2rem 0; font-size: .88rem; }
+  .alt { margin: .15rem 0 .15rem 1.2rem; font-size: .85rem; cursor: pointer; padding: .15rem .4rem; border-radius: 4px; transition: .2s; }
+  .alt:hover { background: #e8e8ff; }
+  .alt.certa { background: #d4edda; border-left: 3px solid #28a745; font-weight: 700; }
+  .alt.errada { background: #f8d7da; border-left: 3px solid #dc3545; opacity: .65; }
+  .gabarito { display: inline-block; background: var(--amarelo); color: #333; font-weight: 800; font-size: .72rem; padding: 1px 7px; border-radius: 20px; margin-left: .4rem; vertical-align: middle; }
+  .explic { margin: .5rem 0 0 1.2rem; font-size: .82rem; color: #555; border-top: 1px dashed #ccc; padding-top: .4rem; }
+  .explic strong { color: var(--roxo); }
+  .toggle { color: var(--roxo); cursor: pointer; font-size: .82rem; user-select: none; margin-top: .2rem; display: inline-block; }
+  .toggle::before { content: '\25B6 Mostrar explicação'; }
+  .toggle.open::before { content: '\25BC Ocultar explicação'; }
+  .explic-box { display: none; }
+  .explic-box.show { display: block; }
+  footer { text-align: center; padding: 2rem 1rem; color: #999; font-size: .8rem; }
+  .aviso { background: #fff3cd; border: 1px solid #ffc107; border-radius: 8px; padding: .8rem 1rem; margin: 1rem 0; font-size: .85rem; }
+  @media (max-width: 600px) {
+    header h1 { font-size: 1.3rem; }
+    .questao { padding: .6rem .8rem; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>📋 Gabarito da Prova — Concurso FATEC</h1>
+  <p>60 questões | Língua Portuguesa · Raciocínio Lógico · Administração · Informática</p>
+</header>
+
+<div class="container">
+
+<div class="aviso">
+  <strong>⚠️ Nota:</strong> As imagens continham apenas a <b>prova</b> (questões), sem gabarito impresso. As respostas abaixo foram determinadas com base na análise do enunciado. Revise com o gabarito oficial.
+</div>
+
+<div class="resume-bar">
+  <div class="item"><div class="num">60</div><div class="label">Questões</div></div>
+  <div class="item"><div class="num">4</div><div class="label">Áreas</div></div>
+  <div class="item"><div class="num">1.0</div><div class="label">Nota/cq</div></div>
+</div>
+
+<!-- LÍNGUA PORTUGUESA -->
+<section>
+  <h2>📝 Língua Portuguesa — Texto: "O tormento da IA" (Michel Alcoforado)</h2>
+
+  <div class="questao">
+    <h3>Q1 <span class="gabarito">GAB: B</span></h3>
+    <p>Autor defende que:</p>
+    <p class="alt errada">a) IA = ruptura inédita, adaptação inviável</p>
+    <p class="alt certa">b) Transformação amplia processo histórico, alcançando profissões intelectuais</p>
+    <p class="alt errada">c) IA evidencia diferenças, formação pouco relevante</p>
+    <p class="alt errada">d) Confiança em diplomas é principal motivo</p>
+    <p class="alt errada">e) Pensar perde valor econômico</p>
+    <span class="toggle" onclick="toggle(this)">Explicação</span>
+    <div class="explic-box"><div class="explic"><strong>Explicação:</strong> O autor vê a IA como continuidade de um processo histórico (máquina a vapor → fábricas → serviços). Não é ruptura, mas evolução que exige revisão da relevância humana.</div></div>
+  </div>
+
+  <div class="questao">
+    <h3>Q2 <span class="gabarito">GAB: E</span></h3>
+    <p>Classificação sintática de "que" na oração subordinada:</p>
+    <p class="alt errada">a) Complemento nominal</p>
+    <p class="alt errada">b) Objeto indireto</p>
+    <p class="alt errada">c) Adjunto adverbial</p>
+    <p class="alt errada">d) Agente da passiva</p>
+    <p class="alt certa">e) Adjunto adnominal</p>
+    <span class="toggle" onclick="toggle(this)">Explicação</span>
+    <div class="explic-box"><div class="explic"><strong>Explicação:</strong> "Que" retoma o antecedente e introduz orações subordinadas, funcionando como adjunto adnominal — conecta o verbo ao termo antecessor.</div></div>
+  </div>
+
+  <div class="questao">
+    <h3>Q3 <span class="gabarito">GAB: E</span></h3>
+    <p>Sentido de "commodity" no 3º parágrafo:</p>
+    <p class="alt errada">a) Pensamento perdeu utilidade</p>
+    <p class="alt errada">b) Pensamento virou recurso raro</p>
+    <p class="alt errada">c) Produção intelectual tornou-se comercial</p>
+    <p class="alt errada">d) Pensar depende de tecnologias digitais</p>
+    <p class="alt certa">e) Atividade intelectual deixou de ser diferencial, tornando-se reproduzível</p>
+    <span class="toggle" onclick="toggle(this)">Explicação</span>
+    <div class="explic-box"><div class="explic"><strong>Explicação:</strong> "Commodity" = mercadoria padronizada. "Pensar virou commodity" = pensar deixou de ser exclusivo humano e pode ser replicado pelas máquinas.</div></div>
+  </div>
+
+  <div class="questao">
+    <h3>Q4 <span class="gabarito">GAB: C</span></h3>
+    <p>"Para sobreviver" entre vírgulas → classificação:</p>
+    <p class="alt errada">a) Subordinada substantiva com aposto</p>
+    <p class="alt errada">b) Coordenada sindética explicativa</p>
+    <p class="alt certa">c) Subordinada adjetiva explicativa</p>
+    <p class="alt errada">d) Subordinada adverbial deslocada</p>
+    <p class="alt errada">e) Coordenada assindética</p>
+    <span class="toggle" onclick="toggle(this)">Explicação</span>
+    <div class="explic-box"><div class="explic"><strong>Explicação:</strong> "Para sobreviver" explica o motivo pelo qual trabalhadores foram para o setor de serviços — retifica o sentido. É subordinada adjetiva explicativa.</div></div>
+  </div>
+
+  <div class="questao">
+    <h3>Q5 <span class="gabarito">GAB: C</span></h3>
+    <p>Referência a "O que será que será?" — função:</p>
+    <p class="alt errada">a) Contraponto às incertezas</p>
+    <p class="alt errada">b) Antecipar análise de canção</p>
+    <p class="alt certa">c) Reforçar incerteza sobre impactos da IA</p>
+    <p class="alt errada">d) Crítica ao papel da música</p>
+    <p class="alt errada">e) Tecnologia sempre presente</p>
+    <span class="toggle" onclick="toggle(this)">Explicação</span>
+    <div class="explic-box"><div class="explic"><strong>Explicação:</strong> A intertextualidade com a canção reforça a sensação de incerteza e apreensão do autor em relação aos impactos da IA no futuro do trabalho.</div></div>
+  </div>
+
+  <div class="questao">
+    <h3>Q6 <span class="gabarito">GAB: C</span></h3>
+    <p>"Ninguém sabe" — pronome e sujeito:</p>
+    <p class="alt errada">a) Simples</p>
+    <p class="alt errada">b) Composto</p>
+    <p class="alt certa">c) Indeterminado</p>
+    <p class="alt errada">d) Oculto</p>
+    <p class="alt errada">e) Inexistente</p>
+    <span class="toggle" onclick="toggle(this)">Explicação</span>
+    <div class="explic-box"><div class="explic"><strong>Explicação:</strong> "Ninguém" = pronome indefinido. Sujeito indeterminado — não se sabe quem não sabe. Generalização pela dúvida.</div></div>
+  </div>
+
+  <div class="questao">
+    <h3>Q7 <span class="gabarito">GAB: E</span></h3>
+    <p>"Acompanho o avanço da IA" — voz verbal:</p>
+    <p class="alt errada">a) Passiva analítica (impessoalidade)</p>
+    <p class="alt errada">b) Passiva analítica (destaque)</p>
+    <p class="alt errada">c) Passiva sintética</p>
+    <p class="alt errada">d) Reflexiva</p>
+    <p class="alt certa">e) Ativa — enunciador como agente</p>
+    <span class="toggle" onclick="toggle(this)">Explicação</span>
+    <div class="explic-box"><div class="explic"><strong>Explicação:</strong> "Acompanho" = verbo transitivo direto, 1ª pessoa do singular. Sujeito ("eu") pratica a ação. Voz ativa evidencia o enunciador como protagonista.</div></div>
+  </div>
+
+  <div class="questao">
+    <h3>Q8 <span class="gabarito">GAB: B</span></h3>
+    <p>"Fascínio" tem acento pela mesma regra que:</p>
+    <p class="alt errada">a) Júri</p>
+    <p class="alt certa">b) História</p>
+    <p class="alt errada">c) Oceânica</p>
+    <p class="alt errada">d) País</p>
+    <p class="alt errada">e) Hífen</p>
+    <span class="toggle" onclick="toggle(this)">Explicação</span>
+    <div class="explic-box"><div class="explic"><strong>Explicação:</strong> "Fascínio" é proparoxítona → recebe acento por ser proparoxítona. "História" também é proparoxítona. "Júri" e "hífen" são proparoxítonas mas terminam em ditongo. "País" é paroxítona (regra diferente).</div></div>
+  </div>
+
+  <div class="questao">
+    <h3>Q9 <span class="gabarito">GAB: C</span></h3>
+    <p>Tempo verbal do último parágrafo → sentido:</p>
+    <p class="alt errada">a) Retomada de acontecimentos passados</p>
+    <p class="alt errada">b) Ações momentâneas</p>
+    <p class="alt certa">c) Condição marcante da realidade contemporânea</p>
+    <p class="alt errada">d) Antecipação de fatos prováveis</p>
+    <p class="alt errada">e) Narração cronológica</p>
+    <span class="toggle" onclick="toggle(this)">Explicação</span>
+    <div class="explic-box"><div class="explic"><strong>Explicação:</strong> Presente do indicativo ("inaugura", "entramos", "precisa avaliar") descreve a condição atual de vigilância permanente — a realidade do presente.</div></div>
+  </div>
+
+  <div class="questao">
+    <h3>Q10 <span class="gabarito">GAB: D</span></h3>
+    <p>"Uma parcela elevada [...] verá parte de suas tarefas ser absorvida":</p>
+    <p class="alt errada">a) Elementos do todo com flexão no singular</p>
+    <p class="alt errada">b) "Dos trabalhadores" exige singular</p>
+    <p class="alt errada">c) Flexão no singular por impessoalidade</p>
+    <p class="alt certa">d) Singular destaca o conjunto como unidade</p>
+    <p class="alt errada">e) Singular é registro informal</p>
+    <span class="toggle" onclick="toggle(this)">Explicação</span>
+    <div class="explic-box"><div class="explic"><strong>Explicação:</strong> "Parcela elevada" = núcleo do sujeito coletivo. O singular gramatical reflete a ideia do conjunto como unidade, não individualidade.</div></div>
+  </div>
+
+  <div class="questao">
+    <h3>Q11 <span class="gabarito">GAB: E</span></h3>
+    <p>"Desta vez" — pronome demonstrativo justificado por:</p>
+    <p class="alt errada">a) Aliusão ao leitor</p>
+    <p class="alt errada">b) Proximidade espacial</p>
+    <p class="alt errada">c) Retomada a referente anterior</p>
+    <p class="alt errada">d) Catáfora</p>
+    <p class="alt certa">e) Referência ao tempo presente</p>
+    <span class="toggle" onclick="toggle(this)">Explicação</span>
+    <div class="explic-box"><div class="explic"><strong>Explicação:</strong> "Desta" = proximidade do enunciador; "vez" = tempo presente. Aponta para o momento atual, diferenciando-o de momentos anteriores.</div></div>
+  </div>
+
+  <div class="questao">
+    <h3>Q12 <span class="gabarito">GAB: B</span></h3>
+    <p>Predicado verbo-nominal:</p>
+    <p class="alt errada">a) "Relatório indica mudanças"</p>
+    <p class="alt certa">b) "Passeio deixou profissionais apreensivos"</p>
+    <p class="alt errada">c) "Profissional avalia sua relevância"</p>
+    <p class="alt errada">d) "Falta de rumo é democrática"</p>
+    <p class="alt errada">e) "Movimento inaugura condição"</p>
+    <span class="toggle" onclick="toggle(this)">Explicação</span>
+    <div class="explic-box"><div class="explic"><strong>Explicação:</strong> Predicado verbo-nominal: verbo não vinculante + elemento nominal. "Deixou" não é verbo de ligação — é verbo causal. "Apreensivos" = predicativo do objeto.</div></div>
+  </div>
+
+  <div class="questao">
+    <h3>Q13 <span class="gabarito">GAB: A</span></h3>
+    <p>"Com força, atormenta gente com ou sem diploma":</p>
+    <p class="alt certa">a) "Com força" = adjunto adverbial de modo; "com ou sem diploma" = adjunto adnominal</p>
+    <p class="alt errada">b) Ambos adjuntos adverbiais de modo</p>
+    <p class="alt errada">c) "Com força" = complemento nominal</p>
+    <p class="alt errada">d) "Com força" = objeto indireto</p>
+    <p class="alt errada">e) "Com força" = predicativo do sujeito</p>
+    <span class="toggle" onclick="toggle(this)">Explicação</span>
+    <div class="explic-box"><div class="explic"><strong>Explicação:</strong> "Com força" modifica o verbo (modo como atormenta) → adjunto adverbial. "Com ou sem diploma" modifica "gente" → adjunto adnominal.</div></div>
+  </div>
+
+  <div class="questao">
+    <h3>Q14 <span class="gabarito">GAB: D</span></h3>
+    <p>1ª pessoa do discurso → contribui para:</p>
+    <p class="alt errada">a) Restringir à experiência individual</p>
+    <p class="alt errada">b) Conferir impessoalidade</p>
+    <p class="alt errada">c) Limitar a especialistas</p>
+    <p class="alt certa">d) Aproximar autor e leitor</p>
+    <p class="alt errada">e) Destacar subjetividade</p>
+    <span class="toggle" onclick="toggle(this)">Explicação</span>
+    <div class="explic-box"><div class="explic"><strong>Explicação:</strong> O uso da 1ª pessoa cria proximidade com o leitor, convidando-o a compartilhar a reflexão sem restringi-la à experiência puramente individual.</div></div>
+  </div>
+
+  <div class="questao">
+    <h3>Q15 <span class="gabarito">GAB: D</span></h3>
+    <p>Redação mais adequada ao padrão formal:</p>
+    <p class="alt errada">a) "Levamos ao conhecimento... será efetuada..."</p>
+    <p class="alt errada">b) "Vimos, por intermédio deste, comunicar..."</p>
+    <p class="alt errada">c) "Comunicamos que, talvez, aconteça..."</p>
+    <p class="alt certa">d) "Informamos aos usuários que o sistema ficará indisponível..."</p>
+    <p class="alt errada">e) "Informamos que a manutenção será realizada..."</p>
+    <span class="toggle" onclick="toggle(this)">Explicação</span>
+    <div class="explic-box"><div class="explic"><strong>Explicação:</strong> A alternativa d é clara, objetiva e adequada ao padrão formal: informa o fato, o prazo e o pedido de cooperação sem ambiguidades.</div></div>
+  </div>
+</section>
+
+<!-- RACIOCÍNIO LÓGICO -->
+<section>
+  <h2>🔢 Raciocínio Lógico Quantitativo</h2>
+
+  <div class="questao">
+    <h3>Q16 <span class="gabarito">GAB: E</span></h3>
+    <p>Proposições compostas — INCORRETA:</p>
+    <p class="alt errada">a) "7 é primo E 5 é ímpar" = V</p>
+    <p class="alt errada">b) "2 é primo E 2 é par" = V</p>
+    <p class="alt errada">c) "4 é divisor de 16 OU 3 é divisor de 16" = F</p>
+    <p class="alt errada">d) "9 é múltiplo de 3 E 25 é múltiplo de 3" = F</p>
+    <p class="alt certa">e) "4 é divisor de 24 OU 36 é múltiplo de 6" = F</p>
+    <span class="toggle" onclick="toggle(this)">Explicação</span>
+    <div class="explic-box"><div class="explic"><strong>Explicação:</strong> 4|24 = V, 36 é múltiplo de 6 = V → V OU V = V. Dizer que é falsa é INCORRETO. A proposição é verdadeira.</div></div>
+  </div>
+
+  <div class="questao">
+    <h3>Q17 <span class="gabarito">GAB: A</span></h3>
+    <p>Joana gastou ½ (sobraram R$25). Francisca gastou 4/5 (sobraram R$20).</p>
+    <p class="alt certa">a) Joana R$50, Francisca R$100</p>
+    <p class="alt errada">b) Joana R$25, Francisca R$20</p>
+    <p class="alt errada">c) Joana R$75, Francisca R$100</p>
+    <p class="alt errada">d) Joana R$50, Francisca R$25</p>
+    <p class="alt errada">e) Joana R$150, Francisca R$100</p>
+    <span class="toggle" onclick="toggle(this)">Explicação</span>
+    <div class="explic-box"><div class="explic"><strong>Explicação:</strong> Joana gastou ½, sobrou ½ = R$25 → total R$50. Francisca gastou 4/5, sobrou 1/5 = R$20 → total R$100.</div></div>
+  </div>
+
+  <div class="questao">
+    <h3>Q18 <span class="gabarito">GAB: C</span></h3>
+    <p>Exames: 5 só imagem, 8 só análises, 1 só funcional, 2 imagem+análises, 2 imagem+funcional, 3 análises+funcional, 1 os três.</p>
+    <p class="alt errada">a) 24</p>
+    <p class="alt errada">b) 21</p>
+    <p class="alt certa">c) 22</p>
+    <p class="alt errada">d) 23</p>
+    <p class="alt errada">e) 25</p>
+    <span class="toggle" onclick="toggle(this)">Explicação</span>
+    <div class="explic-box"><div class="explic"><strong>Explicação:</strong> Diagrama de Euler: só A=5, só B=8, só C=1, AB=2, AC=2, BC=3, ABC=1. Total = 5+8+1+2+2+3+1 = 22.</div></div>
+  </div>
+
+  <div class="questao">
+    <h3>Q19 <span class="gabarito">GAB: A</span></h3>
+    <p>Condicional p→q e bicondicional p↔q — V/F:</p>
+    <p class="alt certa">a) V-F-V-F</p>
+    <p class="alt errada">b) F-V-F-V</p>
+    <p class="alt errada">c) V-V-F-F</p>
+    <p class="alt errada">d) V-F-F-V</p>
+    <p class="alt errada">e) F-F-V-F</p>
+    <span class="toggle" onclick="toggle(this)">Explicação</span>
+    <div class="explic-box"><div class="explic"><strong>Explicação:</strong> p→q é FALSA quando p=V e q=F (apenas 1 caso). p↔q é VERDADEIRA quando p e q têm o mesmo valor. Sequência das 4 combinações: V-F-V-F.</div></div>
+  </div>
+
+  <div class="questao">
+    <h3>Q20 <span class="gabarito">GAB: B</span></h3>
+    <p>Sequência: 10, 12, 16, 22, 30, 40, ... → 8º termo:</p>
+    <p class="alt errada">a) 82</p>
+    <p class="alt certa">b) 66</p>
+    <p class="alt errada">c) 52</p>
+    <p class="alt errada">d) 64</p>
+    <p class="alt errada">e) 100</p>
+    <span class="toggle" onclick="toggle(this)">Explicação</span>
+    <div class="explic-box"><div class="explic"><strong>Explicação:</strong> Diferenças: +2, +4, +6, +8, +10, +12, +14. Seq: 10, 12, 16, 22, 30, 40, 52, 66. 8º termo = 66.</div></div>
+  </div>
+
+  <div class="questao">
+    <h3>Q21 <span class="gabarito">GAB: E</span></h3>
+    <p>Loja: 1 item = 10% desc; 2 itens = 50% no menor; 3 itens = 80% no menor. Vaso R$150, centro R$80, luminária R$120.</p>
+    <p class="alt errada">a) R$350</p>
+    <p class="alt errada">b) R$310</p>
+    <p class="alt errada">c) R$334</p>
+    <p class="alt errada">d) R$342</p>
+    <p class="alt certa">e) R$286</p>
+    <span class="toggle" onclick="toggle(this)">Explicação</span>
+    <div class="explic-box"><div class="explic"><strong>Explicação:</strong> 3 itens → 80% no menor (centro R$80). Desconto = 80%×80 = R$64. Paga R$16. Total: 150+120+16 = R$286.</div></div>
+  </div>
+
+  <div class="questao">
+    <h3>Q22 <span class="gabarito">GAB: B</span></h3>
+    <p>Premissas: Frio→Agasalho→Confortável→Trabalho. ¬Trabalho→¬Dinheiro. Dinheiro=V.</p>
+    <p class="alt errada">a) Faz frio</p>
+    <p class="alt certa">b) Eu trabalho</p>
+    <p class="alt errada">c) Eu não fico confortável</p>
+    <p class="alt errada">d) Eu me agasalho</p>
+    <p class="alt errada">e) Eu não ganho dinheiro</p>
+    <span class="toggle" onclick="toggle(this)">Explicação</span>
+    <div class="explic-box"><div class="explic"><strong>Explicação:</strong> Dinheiro → Trabalhou (contrapositiva de ¬Trabalho→¬Dinheiro). Confortável→Trabalho, mas não se pode inferir o contrário. Única conclusão válida: Eu trabalho.</div></div>
+  </div>
+
+  <div class="questao">
+    <h3>Q23 <span class="gabarito">GAB: B</span></h3>
+    <p>Retângulo: perímetro 16cm, área 15cm²:</p>
+    <p class="alt errada">a) 2cm e 4cm</p>
+    <p class="alt certa">b) 3cm e 5cm</p>
+    <p class="alt errada">c) 3cm e 4cm</p>
+    <p class="alt errada">d) 2cm e 5cm</p>
+    <p class="alt errada">e) 2cm e 3cm</p>
+    <span class="toggle" onclick="toggle(this)">Explicação</span>
+    <div class="explic-box"><div class="explic"><strong>Explicação:</strong> 2(a+b)=16 → a+b=8. a×b=15. Sistema: a=3, b=5.</div></div>
+  </div>
+
+  <div class="questao">
+    <h3>Q24 <span class="gabarito">GAB: B</span></h3>
+    <p>p∧q, p∨q, p→q, ¬p∨¬q (p=V, q=V):</p>
+    <p class="alt errada">a) V-V-F-F</p>
+    <p class="alt certa">b) V-V-V-F</p>
+    <p class="alt errada">c) F-F-V-V</p>
+    <p class="alt errada">d) V-F-V-F</p>
+    <p class="alt errada">e) F-V-F-V</p>
+    <span class="toggle" onclick="toggle(this)">Explicação</span>
+    <div class="explic-box"><div class="explic"><strong>Explicação:</strong> p=V, q=V: p∧q=V; p∨q=V; p→q=V; ¬p∨¬q = F∨F = F. Sequência: V-V-V-F.</div></div>
+  </div>
+
+  <div class="questao">
+    <h3>Q25 <span class="gabarito">GAB: A</span></h3>
+    <p>Gerente: R$200 + 5% sobre vendas. Vendedoras: 30%. A vendeu R$600, B vendeu R$800.</p>
+    <p class="alt certa">a) A:R$380, B:R$440, Gerente:R$270</p>
+    <p class="alt errada">b) A:R$180, B:R$270, Gerente:R$240</p>
+    <p class="alt errada">c) A:R$240, B:R$270, Gerente:R$180</p>
+    <p class="alt errada">d) A:R$270, B:R$180, Gerente:R$240</p>
+    <p class="alt errada">e) A:R$270, B:R$240, Gerente:R$???</p>
+    <span class="toggle" onclick="toggle(this)">Explicação</span>
+    <div class="explic-box"><div class="explic"><strong>Explicação:</strong> A: 30%×600 = R$180 + salário? Não, vendedoras só comissão. A = R$180. B: 30%×800 = R$240. Gerente: 200 + 5%×(600+800) = 200+70 = R$270.</div></div>
+  </div>
+</section>
+
+<!-- ADMINISTRAÇÃO -->
+<section>
+  <h2>🏢 Noções de Administração</h2>
+
+  <div class="questao">
+    <h3>Q26 <span class="gabarito">GAB: B</span></h3>
+    <p>Sistemas abertos:</p>
+    <p class="alt errada">a) Isolados, processos independentes</p>
+    <p class="alt certa">b) Interações constantes com ambiente externo</p>
+    <p class="alt errada">c) Padronizados, ênfase na estabilidade</p>
+    <p class="alt errada">d) Estruturados hierarquicamente</p>
+    <p class="alt errada">e) Definidos por rotinas internas</p>
+  </div>
+
+  <div class="questao">
+    <h3>Q27 <span class="gabarito">GAB: A</span></h3>
+    <p>Pessoal organizacional — V/F:</p>
+    <p class="alt certa">a) F-V-F-V</p>
+    <p class="alt errada">b) V-V-F-V</p>
+    <p class="alt errada">c) V-F-V-F</p>
+    <p class="alt errada">d) V-V-V-F</p>
+    <p class="alt errada">e) V-F-V-V</p>
+  </div>
+
+  <div class="questao">
+    <h3>Q28 <span class="gabarito">GAB: A</span></h3>
+    <p>Sistemas organizacionais — V/F:</p>
+    <p class="alt certa">a) I e II</p>
+    <p class="alt errada">b) I e III</p>
+    <p class="alt errada">c) II e III</p>
+    <p class="alt errada">d) I, II e IV</p>
+    <p class="alt errada">e) I, III e IV</p>
+  </div>
+
+  <div class="questao">
+    <h3>Q29 <span class="gabarito">GAB: B</span></h3>
+    <p>Administrador eficaz — INCORRETA:</p>
+    <p class="alt errada">a) Visualizar metas</p>
+    <p class="alt certa">b) Assumir riscos menores pela gerência operacional</p>
+    <p class="alt errada">c) Desenvolver equipe comprometida</p>
+    <p class="alt errada">d) Enxergar totalidade organizacional</p>
+    <p class="alt errada">e) Comunicação assertiva</p>
+  </div>
+
+  <div class="questao">
+    <h3>Q30 <span class="gabarito">GAB: A</span></h3>
+    <p>Gerenciamento — INCORRETA:</p>
+    <p class="alt certa">a) Funções gerenciais demandam conhecimento</p>
+    <p class="alt errada">b) Gerenciar é atingir metas</p>
+    <p class="alt errada">c) Produtividade via conhecimento gerencial</p>
+    <p class="alt errada">d) Estabelecer/modificar padrões</p>
+  </div>
+
+  <div class="questao">
+    <h3>Q31 <span class="gabarito">GAB: D</span></h3>
+    <p>Drucker — V/F sobre gestor eficaz:</p>
+    <p class="alt errada">a) V-V=F-V</p>
+    <p class="alt errada">b) V-V-V-V</p>
+    <p class="alt certa">c) V=F=V=V</p>
+    <p class="alt errada">d) F=V-V=V</p>
+    <p class="alt errada">e) F-V=F-V</p>
+  </div>
+
+  <div class="questao">
+    <h3>Q32 <span class="gabarito">GAB: B</span></h3>
+    <p>PODC — afirmativas corretas:</p>
+    <p class="alt errada">a) I e II</p>
+    <p class="alt certa">b) I, II e III</p>
+    <p class="alt errada">c) I, III e IV</p>
+    <p class="alt errada">d) II, III e IV</p>
+    <p class="alt errada">e) I, II, III e IV</p>
+  </div>
+
+  <div class="questao">
+    <h3>Q33 <span class="gabarito">GAB: A</span></h3>
+    <p>Taylor — INCORRETA sobre divisão de tarefas:</p>
+    <p class="alt certa">a) Supervisor deve abster-se do conhecimento imperativo</p>
+    <p class="alt errada">b) Divisão aumenta produtividade</p>
+    <p class="alt errada">c) Subdivisão potencializa poder de execução</p>
+    <p class="alt errada">d) Supervisor controla trabalho</p>
+  </div>
+
+  <div class="questao">
+    <h3>Q34 <span class="gabarito">GAB: D</span></h3>
+    <p>Taylor 4 princípios — V/F:</p>
+    <p class="alt errada">a) V-V=F-V</p>
+    <p class="alt errada">b) V-V-V-V</p>
+    <p class="alt certa">c) V=F=V=V</p>
+    <p class="alt errada">d) F=V=V=V</p>
+    <p class="alt errada">e) F-V=F-V</p>
+  </div>
+
+  <div class="questao">
+    <h3>Q35 <span class="gabarito">GAB: D</span></h3>
+    <p>Gráfico de Gantt — INCORRETA:</p>
+    <p class="alt errada">a) Estrutura cronograma</p>
+    <p class="alt errada">b) Linha do tempo</p>
+    <p class="alt errada">c) Acompanhamento visual</p>
+    <p class="alt certa">d) Substitui monitoramento</p>
+    <p class="alt errada">e) Facilita coordenação</p>
+  </div>
+
+  <div class="questao">
+    <h3>Q36 <span class="gabarito">GAB: A</span></h3>
+    <p>APO — afirmativas corretas:</p>
+    <p class="alt errada">a) I e II</p>
+    <p class="alt certa">b) I, II e III</p>
+    <p class="alt errada">c) I e IV</p>
+    <p class="alt errada">d) I, III e IV</p>
+    <p class="alt errada">e) II, III e IV</p>
+  </div>
+
+  <div class="questao">
+    <h3>Q37 <span class="gabarito">GAB: B</span></h3>
+    <p>Qualidade em serviços — CORRETA:</p>
+    <p class="alt errada">a) Restringe a tarefas operacionais</p>
+    <p class="alt certa">b) Exige ação comprometida para melhoria contínua</p>
+    <p class="alt errada">c) Supervisor orienta tarefas de outras áreas</p>
+    <p class="alt errada">d) Relacionada à organização das atividades</p>
+    <p class="alt errada">e) Definida pela descrição do cargo</p>
+  </div>
+
+  <div class="questao">
+    <h3>Q38 <span class="gabarito">GAB: E</span></h3>
+    <p>Sentimentos e relações interpessoais — CORRETA:</p>
+    <p class="alt errada">a) Substituir emoção por objetividade</p>
+    <p class="alt errada">b) Análise racional reduz emoções</p>
+    <p class="alt errada">c) Interpretar comportamentos para evitar conflitos</p>
+    <p class="alt errada">d) Avaliar atitudes alheias</p>
+    <p class="alt certa">e) Identificar emoções amplia compreensão e diálogo</p>
+  </div>
+
+  <div class="questao">
+    <h3>Q39 <span class="gabarito">GAB: A</span></h3>
+    <p>Líder vs Administrador — V/F:</p>
+    <p class="alt certa">a) V-V-F-V</p>
+    <p class="alt errada">b) V-V-V-V</p>
+    <p class="alt errada">c) F-V-F-V</p>
+    <p class="alt errada">d) V-F-V-F</p>
+    <p class="alt errada">e) F-F-V-F</p>
+  </div>
+
+  <div class="questao">
+    <h3>Q40 <span class="gabarito">GAB: C</span></h3>
+    <p>Teoria X e Y — INCORRETA:</p>
+    <p class="alt errada">a) Teoria Y estimula autonomia</p>
+    <p class="alt errada">b) Teoria X = supervisão rigorosa</p>
+    <p class="alt certa">c) Teoria X: criatividade distribuída</p>
+    <p class="alt errada">d) Teoria Y: comprometimento via responsabilidade</p>
+    <p class="alt errada">e) X e Y influenciam condução de equipes</p>
+  </div>
+
+  <div class="questao">
+    <h3>Q41 <span class="gabarito">GAB: E</span></h3>
+    <p>Avaliação de desempenho — CORRETA:</p>
+    <p class="alt errada">a) Análise de funções do cargo</p>
+    <p class="alt errada">b) Registro formal de atividades</p>
+    <p class="alt errada">c) Instrumento de controle diário</p>
+    <p class="alt errada">d) Mensurar tempo de execução</p>
+    <p class="alt certa">e) Orientar quanto a resultados e desenvolvimento</p>
+  </div>
+
+  <div class="questao">
+    <h3>Q42 <span class="gabarito">GAB: B</span></h3>
+    <p>Gestão de conflitos — ação mais correta:</p>
+    <p class="alt errada">a) Transferir colaborador</p>
+    <p class="alt certa">b) Incentivar exposição de pontos de vista e solução conjunta</p>
+    <p class="alt errada">c) Determinar responsável</p>
+    <p class="alt errada">d) Interromper comunicação</p>
+    <p class="alt errada">e) Deixar resolver espontaneamente</p>
+  </div>
+
+  <div class="questao">
+    <h3>Q43 <span class="gabarito">GAB: C</span></h3>
+    <p>CNV — V/F:</p>
+    <p class="alt errada">a) F-F-F-F</p>
+    <p class="alt errada">b) V-V-V-V</p>
+    <p class="alt certa">c) V-V-F-V</p>
+    <p class="alt errada">d) F-V-V-V</p>
+    <p class="alt errada">e) F-V-F-F</p>
+  </div>
+
+  <div class="questao">
+    <h3>Q44 <span class="gabarito">GAB: A</span></h3>
+    <p>Conflito logística × comunicação — ação mais correta:</p>
+    <p class="alt certa">a) Reunir representantes, analisar impactos, decisão conjunta</p>
+    <p class="alt errada">b) Relatórios detalhados</p>
+    <p class="alt errada">c) Registrar demandas para análise posterior</p>
+    <p class="alt errada">d) Manter planejamento inicial</p>
+    <p class="alt errada">e) Comunicar procedimentos</p>
+  </div>
+
+  <div class="questao">
+    <h3>Q45 <span class="gabarito">GAB: E</span></h3>
+    <p>Responsabilidade organizacional — CORRETA:</p>
+    <p class="alt errada">a) Relaciona ao nível de autonomia</p>
+    <p class="alt errada">b) Seguir orientações da liderança</p>
+    <p class="alt errada">c) Participação conjunta</p>
+    <p class="alt errada">d) Restrita a tarefas dentro do prazo</p>
+    <p class="alt certa">e) Compreender seu papel e responder por resultados</p>
+  </div>
+
+  <div class="questao">
+    <h3>Q46 <span class="gabarito">GAB: C</span></h3>
+    <p>Gerenciamento da rotina — CORRETO:</p>
+    <p class="alt errada">a) Foco em resultados de processos</p>
+    <p class="alt errada">b) Medida do engajamento</p>
+    <p class="alt certa">c) Padronização de processos e operações</p>
+    <p class="alt errada">d) Monitoração esporádica</p>
+    <p class="alt errada">e) Ação corretiva e operações</p>
+  </div>
+
+  <div class="questao">
+    <h3>Q47 <span class="gabarito">GAB: B</span></h3>
+    <p>Função/cargo — V/F:</p>
+    <p class="alt errada">a) F-F-V-F</p>
+    <p class="alt certa">b) V-V-F-V</p>
+    <p class="alt errada">c) F-V-F-V</p>
+    <p class="alt errada">d) V-V-V-F</p>
+    <p class="alt errada">e) V-F-V-F</p>
+  </div>
+
+  <div class="questao">
+    <h3>Q48 <span class="gabarito">GAB: C</span></h3>
+    <p>Barros Neto — fragmentação — V/F:</p>
+    <p class="alt errada">a) I e II</p>
+    <p class="alt errada">b) II e III</p>
+    <p class="alt certa">c) III e IV</p>
+    <p class="alt errada">d) I e IV</p>
+    <p class="alt errada">e) II e IV</p>
+  </div>
+
+  <div class="questao">
+    <h3>Q49 <span class="gabarito">GAB: C</span></h3>
+    <p>Logística — eficiência do grupo:</p>
+    <p class="alt errada">a) Experiência individual acumulada</p>
+    <p class="alt errada">b) Ambientes com flexibilidade</p>
+    <p class="alt certa">c) Padronização + acompanhamento sistemático</p>
+    <p class="alt errada">d) Membros independentes, foco individual</p>
+    <p class="alt errada">e) Redução de monitoramento</p>
+  </div>
+
+  <div class="questao">
+    <h3>Q50 <span class="gabarito">GAB: A</span></h3>
+    <p>Agente operacional — V/F:</p>
+    <p class="alt certa">a) I e II</p>
+    <p class="alt errada">b) II e IV</p>
+    <p class="alt errada">c) I e IV</p>
+    <p class="alt errada">d) II, III e IV</p>
+    <p class="alt errada">e) I, II, III e IV</p>
+    <span class="toggle" onclick="toggle(this)">Explicação</span>
+    <div class="explic-box"><div class="explic"><strong>Explicação:</strong> I (desempenho ↔ clareza de papel + interações) = V. II (comunicação → alinhamento + redução falhas) = V. III (eficiência independente de interações) = F — interações são essenciais. IV (responsabilidades → organização + cooperação) = V. Porém III é falsa, então corretas: I, II, IV. Sem essa opção, a mais próxima é a) I e II.</div></div>
+  </div>
+
+  <div class="questao">
+    <h3>Q51 <span class="gabarito">GAB: D</span></h3>
+    <p>Trabalho em equipe — V/F:</p>
+    <p class="alt errada">a) V-F-V-V</p>
+    <p class="alt errada">b) V-V-V-V</p>
+    <p class="alt errada">c) F-V-V-V</p>
+    <p class="alt certa">d) V-V-F-V</p>
+    <p class="alt errada">e) V-V-V-F</p>
+    <span class="toggle" onclick="toggle(this)">Explicação</span>
+    <div class="explic-box"><div class="explic"><strong>Explicação:</strong> I (cooperação + compartilhamento) = V. II (atuação conjunta → resolução) = V. III (desempenho ↔ execução individual) = F — é coletivo. IV (comunicação → alinhamento) = V.</div></div>
+  </div>
+
+  <div class="questao">
+    <h3>Q52 <span class="gabarito">GAB: A</span></h3>
+    <p>Compromisso com qualidade — INCORRETA:</p>
+    <p class="alt certa">a) Busca intermitente pela melhoria</p>
+    <p class="alt errada">b) Cumprimento conforme padrões</p>
+    <p class="alt errada">c) Controle das atividades realizadas</p>
+    <p class="alt errada">d) Análise dos resultados</p>
+    <p class="alt errada">e) Padronização das funções</p>
+    <span class="toggle" onclick="toggle(this)">Explicação</span>
+    <div class="explic-box"><div class="explic"><strong>Explicação:</strong> "Busca intermitente" está incorreto — qualidade exige melhoria contínua, não intermitente. As demais descrevem aspectos válidos do compromisso com qualidade.</div></div>
+  </div>
+
+  <div class="questao">
+    <h3>Q53 <span class="gabarito">GAB: B</span></h3>
+    <p>Qualidade — afirmativas corretas:</p>
+    <p class="alt errada">a) I e II</p>
+    <p class="alt certa">b) I, II e IV</p>
+    <p class="alt errada">c) II, III e IV</p>
+    <p class="alt errada">d) I, III e IV</p>
+    <p class="alt errada">e) III e IV</p>
+  </div>
+
+  <div class="questao">
+    <h3>Q54 <span class="gabarito">GAB: A</span></h3>
+    <p>Avaliação de desempenho — CORRETA:</p>
+    <p class="alt certa">a) Análise de resultados e comportamentos</p>
+    <p class="alt errada">b) Controle focado na supervisão</p>
+    <p class="alt errada">c) Tempo de permanência no cargo</p>
+    <p class="alt errada">d) Observação informal</p>
+    <p class="alt errada">e) Definição de tarefas</p>
+  </div>
+</section>
+
+<!-- INFORMÁTICA -->
+<section>
+  <h2>💻 Noções Básicas de Informática</h2>
+
+  <div class="questao">
+    <h3>Q55 <span class="gabarito">GAB: D</span></h3>
+    <p>Avaliação de desempenho — V/F:</p>
+    <p class="alt errada">a) I e II</p>
+    <p class="alt certa">b) II e IV</p>
+    <p class="alt errada">c) I e III</p>
+    <p class="alt errada">d) II, III e IV</p>
+    <p class="alt errada">e) I, II e IV</p>
+  </div>
+
+  <div class="questao">
+    <h3>Q56 <span class="gabarito">GAB: D</span></h3>
+    <p>Explorador de Arquivos + F2:</p>
+    <p class="alt errada">a) Copiar</p>
+    <p class="alt errada">b) Excluir</p>
+    <p class="alt errada">c) Propriedades</p>
+    <p class="alt certa">d) Renomear</p>
+    <p class="alt errada">e) Mover para pasta anterior</p>
+  </div>
+
+  <div class="questao">
+    <h3>Q57 <span class="gabarito">GAB: A</span></h3>
+    <p>Excel — filtros/classificação:</p>
+    <p class="alt certa">a) Filtro exibe linhas que atendem critérios, ocultando sem excluir</p>
+    <p class="alt errada">b) Classificação altera permanentemente ordem</p>
+    <p class="alt errada">c) Filtro exclui linhas permanentemente</p>
+    <p class="alt errada">d) Gráfico Funil para evolução populacional</p>
+    <p class="alt errada">e) Classificação decrescente ordena outras colunas independentemente</p>
+  </div>
+
+  <div class="questao">
+    <h3>Q58 <span class="gabarito">GAB: C</span></h3>
+    <p>Wi-Fi/4G/Logs — V/F:</p>
+    <p class="alt errada">a) V-V-V</p>
+    <p class="alt errada">b) F-V-F</p>
+    <p class="alt certa">c) V-F-V</p>
+    <p class="alt errada">d) F-F-V</p>
+    <p class="alt errada">e) V-V-F</p>
+    <span class="toggle" onclick="toggle(this)">Explicação</span>
+    <div class="explic-box"><div class="explic"><strong>Explicação:</strong> I (Wi-Fi radio, 4G celular) = V. II (offline não gera/armazena dados) = F — apps offline geram e armazenam localmente. III (Logs documentam eventos) = V.</div></div>
+  </div>
+
+  <div class="questao">
+    <h3>Q59 <span class="gabarito">GAB: B</span></h3>
+    <p>Android/Segurança — V/F:</p>
+    <p class="alt errada">a) V-F-V-F</p>
+    <p class="alt certa">b) V-V-F-V</p>
+    <p class="alt errada">c) F-V-F-V</p>
+    <p class="alt errada">d) V-F-V-V</p>
+    <p class="alt errada">e) F-F-V-F</p>
+    <span class="toggle" onclick="toggle(this)">Explicação</span>
+    <div class="explic-box"><div class="explic"><strong>Explicação:</strong> I (atualizações corrigem vulnerabilidades) = V. II (fontes desconhecidas = risco) = V. III (PIN/biometria impede COMPLETAMENTe) = F — pode ser burlado. IV (desatualizado = vulnerável) = V.</div></div>
+  </div>
+
+  <div class="questao">
+    <h3>Q60 <span class="gabarito">GAB: A</span></h3>
+    <p>Segurança da info — INCORRETA:</p>
+    <p class="alt certa">a) Compartilhar senha com colega de confiança</p>
+    <p class="alt errada">b) Senhas longas com mix de caracteres</p>
+    <p class="alt errada">c) Confidencialidade = acesso autorizado</p>
+    <p class="alt errada">d) Alterar senha periodicamente</p>
+    <p class="alt errada">e) Integridade = não alteração não autorizada</p>
+  </div>
+</section>
+
+</div>
+
+<footer>
+  <p>Gabarito reconstruído a partir de OCR das imagens da prova. Revise com o gabarito oficial.</p>
+  <p>OnStage · FATEC ComExt · Felipe</p
+</footer>
+
+<script>
+function toggle(el) {
+  el.classList.toggle('open');
+  const box = el.nextElementSibling;
+  box.classList.toggle('show');
+}
+</script>
+</body>
+</html>
