@@ -1,0 +1,1036 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resumos OnStage — Logística · Econ. Internacional · Gestão Financeira</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --roxo: #533afd;
+  --roxo-light: #ede9fe;
+  --azul: #2563eb;
+  --amarelo: #fbbf24;
+  --amarelo-soft: #fef3c7;
+  --branco: #ffffff;
+  --cinza-bg: #f8fafc;
+  --cinza-borda: #e5e7eb;
+  --texto: #1a1a1a;
+  --muted: #6b7280;
+  --verde: #16a34a;
+  --vermelho: #dc2626;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--cinza-bg);
+  color: var(--texto);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── NAV FIXO ── */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--roxo);
+  padding: 0 1rem;
+  display: flex;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  box-shadow: 0 2px 12px rgba(83,58,253,0.25);
+}
+nav::-webkit-scrollbar { display: none; }
+nav a {
+  color: rgba(255,255,255,0.85);
+  text-decoration: none;
+  padding: 0.85rem 1rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  white-space: nowrap;
+  border-bottom: 3px solid transparent;
+  transition: all 0.2s;
+}
+nav a:hover, nav a.active { color: #fff; border-bottom-color: var(--amarelo); }
+nav a .emoji { margin-right: 4px; }
+
+/* ── CONTAINER ── */
+.container { max-width: 960px; margin: 0 auto; padding: 1.5rem 1rem 4rem; }
+
+/* ── HEADER ── */
+header {
+  background: linear-gradient(135deg, var(--roxo) 0%, var(--azul) 100%);
+  color: #fff;
+  padding: 2rem 1.5rem;
+  border-radius: 16px;
+  margin-bottom: 2rem;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(83,58,253,0.2);
+}
+header h1 { font-size: 1.6rem; margin-bottom: 0.3rem; }
+header p { opacity: 0.9; font-size: 0.9rem; }
+header .tags { margin-top: 0.8rem; display: flex; flex-wrap: wrap; gap: 0.4rem; justify-content: center; }
+
+/* ── CARDS ── */
+.card {
+  background: var(--branco);
+  border: 1px solid var(--cinza-borda);
+  border-radius: 14px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  transition: transform 0.2s, box-shadow 0.2s;
+  scroll-margin-top: 5rem;
+}
+.card:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.08); }
+.card h2 {
+  color: var(--roxo);
+  font-size: 1.2rem;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--roxo-light);
+}
+.card h3 { color: var(--azul); font-size: 1rem; margin: 1rem 0 0.5rem; }
+.card h4 { color: var(--texto); font-size: 0.95rem; margin: 0.8rem 0 0.3rem; }
+
+/* ── HIGHLIGHT ── */
+.highlight {
+  background: var(--roxo-light);
+  border-left: 4px solid var(--roxo);
+  padding: 0.8rem 1rem;
+  margin: 0.8rem 0;
+  border-radius: 0 10px 10px 0;
+  font-size: 0.92rem;
+}
+.highlight.warn {
+  background: var(--amarelo-soft);
+  border-left-color: var(--amarelo);
+}
+
+/* ── FORMULA ── */
+.formula {
+  background: var(--amarelo-soft);
+  border: 1px solid var(--amarelo);
+  padding: 0.9rem 1rem;
+  margin: 0.8rem 0;
+  border-radius: 10px;
+  font-family: 'Courier New', monospace;
+  text-align: center;
+  font-size: 0.95rem;
+  line-height: 1.8;
+}
+.formula .label {
+  display: block;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  color: var(--roxo);
+  margin-bottom: 0.3rem;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* ── TABLE ── */
+table { width: 100%; border-collapse: collapse; margin: 1rem 0; border-radius: 10px; overflow: hidden; font-size: 0.9rem; }
+th { background: var(--roxo); color: #fff; padding: 0.7rem 0.8rem; text-align: left; font-weight: 600; }
+td { padding: 0.65rem 0.8rem; border-bottom: 1px solid var(--cinza-borda); }
+tr:nth-child(even) td { background: #f9fafb; }
+
+/* ── FLOW ── */
+.flow { display: flex; align-items: center; gap: 0.4rem; flex-wrap: wrap; margin: 1rem 0; }
+.flow-step { background: var(--roxo); color: #fff; padding: 0.45rem 0.85rem; border-radius: 8px; font-size: 0.82rem; font-weight: 600; }
+.flow-arrow { color: var(--roxo); font-size: 1.1rem; }
+
+/* ── TAG ── */
+.tag {
+  display: inline-block;
+  background: var(--amarelo);
+  color: var(--texto);
+  padding: 0.2rem 0.65rem;
+  border-radius: 20px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  margin: 0.2rem;
+}
+
+/* ── LACINHO ── */
+.lacinho {
+  background: #fff7ed;
+  border: 1px solid #f97316;
+  border-left: 4px solid #f97316;
+  padding: 0.8rem 1rem;
+  margin: 0.8rem 0;
+  border-radius: 0 10px 10px 0;
+  font-size: 0.9rem;
+}
+.lacinho::before { content: "🎀 "; }
+
+/* ── EXERCISES ── */
+.exercise {
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-radius: 10px;
+  padding: 1rem 1.2rem;
+  margin: 1rem 0;
+}
+.exercise .q { font-weight: 700; margin-bottom: 0.5rem; color: #14532d; }
+.exercise .opts label { display: block; padding: 0.4rem 0; cursor: pointer; font-size: 0.92rem; }
+.exercise .opts input { margin-right: 0.5rem; }
+.btn-gabarito {
+  display: inline-block;
+  background: var(--roxo);
+  color: #fff;
+  border: none;
+  padding: 0.6rem 1.4rem;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 0.88rem;
+  cursor: pointer;
+  margin-top: 0.8rem;
+  transition: background 0.2s;
+}
+.btn-gabarito:hover { background: var(--azul); }
+.gabarito { display: none; margin-top: 1rem; }
+.gabarito.show { display: block; }
+.gabarito-item {
+  background: var(--branco);
+  border: 1px solid var(--cinza-borda);
+  border-radius: 10px;
+  padding: 0.8rem 1rem;
+  margin: 0.5rem 0;
+  font-size: 0.9rem;
+}
+.gabarito-item .corr { color: var(--verde); font-weight: 700; }
+.gabarito-item .expl { color: var(--muted); font-size: 0.85rem; margin-top: 0.3rem; }
+
+/* ── FOOTER ── */
+footer { text-align: center; margin-top: 2.5rem; padding: 1.2rem; color: var(--muted); font-size: 0.82rem; border-top: 1px solid var(--cinza-borda); }
+
+/* ── MOBILE ── */
+@media (max-width: 640px) {
+  body { font-size: 15px; }
+  header h1 { font-size: 1.3rem; }
+  .card { padding: 1.1rem; }
+  .card h2 { font-size: 1.08rem; }
+  .formula { font-size: 0.88rem; }
+  nav a { padding: 0.7rem 0.7rem; font-size: 0.75rem; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#logistica"><span class="emoji">🚛</span>Logística</a>
+  <a href="#econ"><span class="emoji">🌐</span>Econ. Internacional</a>
+  <a href="#fin"><span class="emoji">💰</span>Gestão Financeira</a>
+</nav>
+
+<div class="container">
+
+<header>
+  <h1>📚 Resumos OnStage</h1>
+  <p>Logística · Economia Internacional · Gestão Financeira</p>
+  <div class="tags"><span class="tag">FATEC</span><span class="tag">2026</span><span class="tag">Mobile-friendly</span></div>
+</header>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- LOGÍSTICA -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="card" id="logistica">
+  <h2>🚛 1. Logística</h2>
+
+  <div class="lacinho">
+    <strong>Tópicos com lacinho no slide</strong> — estes foram os marcados pelo professor como importantes para a prova. Revisar com atenção especial.
+  </div>
+
+  <h3>1.1 Conceito de Logística e Cadeia de Suprimentos</h3>
+  <p>Logística é o conjunto de atividades que planeja, implementa e controla o fluxo eficiente e eficaz de <strong>mercadorias, serviços e informações</strong> desde o ponto de origem até o ponto de consumo.</p>
+  <p><strong>Cadeia de Suprimentos (Supply Chain):</strong> rede mais ampla — fornecedores → fabricantes → distribuidores → varejistas → consumidores. A logística é o subsetor que cuida da movimentação e armazenagem.</p>
+
+  <div class="highlight">
+    <strong>Ballou (2007):</strong> Logística empresarial = atividades de movimentação e armazenagem que facilitam o fluxo de produtos desde a aquisição da matéria-prima até o consumo, mais os fluxos de informação.
+  </div>
+
+  <h3>1.2 Três Áreas da Logística</h3>
+  <table>
+    <tr><th>Área</th><th>O que faz</th><th>Exemplo</th></tr>
+    <tr><td>Suprimento (ENTRADA)</td><td>Compras, negociação, aquisição de insumos</td><td>Comprar matéria-prima do fornecedor</td></tr>
+    <tr><td>Movimentação (INTERNA)</td><td>Transporte interno, armazenagem, separação</td><td>Mover produto da produção para o estoque</td></tr>
+    <tr><td>Distribuição Física (SAÍDA)</td><td>Expedição, entrega, last mile</td><td>Enviar produto ao cliente final</td></tr>
+  </table>
+
+  <h3>1.3 Estratégias de Compras <span class="tag">LACINHO</span></h3>
+  <h4>Verticalização vs Horizontalização</h4>
+  <table>
+    <tr><th>Estratégia</th><th>Conceito</th><th>Vantagens</th></tr>
+    <tr><td><strong>Verticalização</strong></td><td>Empresa produz internamente tudo que pode</td><td>Independência de terceiros, liberdade de mudar planos, manutenção de segredos industriais</td></tr>
+    <tr><td><strong>Horizontalização</strong></td><td>Comprar de terceiros o máximo possível</td><td>Redução de custos, maior flexibilidade, incorporação de novas tecnologias, foco no negócio principal</td></tr>
+  </table>
+
+  <h4>Centralização vs Descentralização de Compras</h4>
+  <table>
+    <tr><th>Modelo</th><th>Benefícios</th><th>Quando usar</th></tr>
+    <tr><td><strong>Centralização</strong></td><td>Maiores volumes → mais poder de negociação; padronização; controle simplificado de estoques</td><td>Unidades próximas, materiais padronizados</td></tr>
+    <tr><td><strong>Descentralização</strong></td><td>Relacionamento regional; negociações ágeis; menores distâncias e prazos</td><td>Unidades distantes, demandas regionais</td></tr>
+  </table>
+
+  <h3>1.4 Incoterms e Condições de Compra <span class="tag">LACINHO</span></h3>
+  <p>Regras padronizadas pela CCI que definem responsabilidades entre comprador e vendedor em comércio exterior.</p>
+  <table>
+    <tr><th>Termo</th><th>Significado</th><th>Responsabilidade</th></tr>
+    <tr><td><strong>FOB</strong></td><td>Free On Board</td><td>Vendedor entrega a bordo no porto de embarque. Comprador assume transporte, seguro e riscos</td></tr>
+    <tr><td><strong>CIF</strong></td><td>Cost, Insurance &amp; Freight</td><td>Vendedor paga custo + seguro + frete até porto de destino</td></tr>
+    <tr><td><strong>EXW</strong></td><td>Ex Works</td><td>Vendedor disponibiliza mercadoria em sua fábrica. Comprador assume tudo</td></tr>
+    <tr><td><strong>CFR</strong></td><td>Cost and Freight</td><td>Vendedor paga frete até destino, NÃO inclui seguro</td></tr>
+    <tr><td><strong>DDP</strong></td><td>Delivered Duty Paid</td><td>Vendedor assume TODOS os custos e riscos até entrega no destino</td></tr>
+    <tr><td><strong>FCA</strong></td><td>Free Carrier</td><td>Vendedor entrega a transportador indicado pelo comprador</td></tr>
+  </table>
+
+  <div class="highlight">
+    <strong>FOB vs CIF na prática:</strong> FOB = B2B (empresa escolhe transportadora). CIF = B2C (empresa entrega sem se preocupar).
+  </div>
+
+  <h3>1.5 Estações Aduaneiras <span class="tag">LACINHO</span></h3>
+  <div class="flow">
+    <span class="step">EAF</span>
+    <span class="flow-arrow">→</span>
+    <span>Estação Aduaneira de Fronteira — controle de veículos em tráfego internacional, inspeção de cargas de passagem</span>
+  </div>
+  <div class="flow">
+    <span class="step">EADI</span>
+    <span class="flow-arrow">→</span>
+    <span>Estação Aduaneira de Interior (Porto Seco) — suspensão temporária de tributos, tarifas menores, maior agilidade</span>
+  </div>
+
+  <h3>1.6 Classificação ABC / XYZ / PQR <span class="tag">LACINHO</span></h3>
+
+  <h4>Classificação ABC (valor de consumo)</h4>
+  <table>
+    <tr><th>Classe</th><th>Importância</th><th>Valor</th><th>% Itens / % Valor</th></tr>
+    <tr><td><strong>A</strong></td><td>Muito importante</td><td>Alto valor</td><td>~20% itens / ~80% valor</td></tr>
+    <tr><td><strong>B</strong></td><td>Intermediário</td><td>Médio valor</td><td>~30% itens / ~15% valor</td></tr>
+    <tr><td><strong>C</strong></td><td>Menor importância</td><td>Baixo valor</td><td>~50% itens / ~5% valor</td></tr>
+  </table>
+  <p><strong>Regra de Pareto:</strong> 20% dos itens (A) representam 80% do valor.</p>
+
+  <h4>Classificação XYZ (criticidade)</h4>
+  <table>
+    <tr><th>Classe</th><th>Critério</th><th>Impacto se faltar</th></tr>
+    <tr><td><strong>X</strong></td><td>Aplicação não importante, tem similar</td><td>Não acarreta paralisações</td></tr>
+    <tr><td><strong>Y</strong></td><td>Importância média, pode ser substituído</td><td>Pode causar pequenos atrasos</td></tr>
+    <tr><td><strong>Z</strong></td><td>Importância vital, sem similar</td><td>Para a produção/operação</td></tr>
+  </table>
+
+  <h4>Curva PQR (giro/acessibilidade)</h4>
+  <div class="flow">
+    <span class="flow-step">P</span>
+    <span class="flow-arrow">→</span>
+    <span>Popular — alta saída, fácil acesso, próximo à expedição</span>
+  </div>
+  <div class="flow">
+    <span class="flow-step">Q</span>
+    <span class="flow-arrow">→</span>
+    <span>Intermediário — demanda média, zona secundária</span>
+  </div>
+  <div class="flow">
+    <span class="flow-step">R</span>
+    <span class="flow-arrow">→</span>
+    <span>Raro — baixa saída, fundos do galpão, maior tempo de recuperação</span>
+  </div>
+  <p>Cruzando ABC + PQR, o gestor define políticas precisas de estoque, contagem cíclica e reabastecimento.</p>
+
+  <h3>1.7 Indicadores de Estoque <span class="tag">LACINHO</span></h3>
+  <div class="formula">
+    <span class="label">Giro de Estoques</span>
+    Giro = Valor Consumido no Período / Valor do Estoque Médio no Período
+  </div>
+  <div class="formula">
+    <span class="label">Cobertura (dias)</span>
+    Cobertura = Nº de Dias do Período / Giro
+  </div>
+  <div class="note">
+    <strong>Exemplo:</strong> Saídas R$ 1.667.037,59 | Estoque médio R$ 96.099,53<br>
+    Giro = 1.667.037,59 / 96.099,53 = <strong>17,34 giros/ano</strong><br>
+    Cobertura = 180 dias / 17,34 = <strong>10,38 dias de estoque</strong>
+  </div>
+  <p><strong>Interpretação:</strong> giro alto = capital girando rápido; cobertura baixa = pouco capital parado.</p>
+
+  <h3>1.8 Cubagem e Peso Cubado <span class="tag">LACINHO</span></h3>
+  <p>Cubar uma carga = calcular volume para cobrança de frete. O frete é cobrado pelo <strong>maior</strong> entre peso real e peso cubado.</p>
+  <div class="formula">
+    Peso Cubado = Volume (m³) × Fator de Cubagem
+  </div>
+  <table>
+    <tr><th>Modal</th><th>Fator (kg/m³)</th><th>1 m³ =</th></tr>
+    <tr><td><strong>Rodoviário</strong></td><td>300 kg/m³</td><td>300 kg</td></tr>
+    <tr><td><strong>Aéreo</strong></td><td>166,7 kg/m³</td><td>166,7 kg</td></tr>
+    <tr><td><strong>Marítimo</strong></td><td>1.000 kg/m³</td><td>1.000 kg</td></tr>
+  </table>
+  <div class="note">
+    <strong>Exemplo:</strong> Caixa 2m × 1m × 1m = 2m³<br>
+    Rodoviário: 2 × 300 = 600 kg cubados<br>
+    Aéreo: 2 × 166,7 = 333,4 kg cubados<br>
+    Marítimo: 2 × 1000 = 2000 kg cubados<br>
+    Se peso real &gt; peso cubado → usa peso real.
+  </div>
+
+  <h3>1.9 Classificação Universal de Cargas</h3>
+  <table>
+    <tr><th>Por Natureza</th><th>Por Forma de Transporte</th></tr>
+    <tr><td><strong>A Granel (Bulk):</strong> sem embalagem, sem identificação, sem contagem (grãos, farelos)</td><td><strong>General:</strong> embalagens individuais, contagem por unidade</td></tr>
+    <tr><td><strong>Geral:</strong> embalada, com identificação</td><td><strong>Individual (Breakbulk):</strong> volumes diversos, embarque manual</td></tr>
+    <tr><td></td><td><strong>Agrupada (Unitizada):</strong> paletização, contêinerização — movimentação mecanizada</td></tr>
+  </table>
+
+  <h3>1.10 Meios de Unitização</h3>
+  <ul>
+    <li><strong>Filme Shrink:</strong> plástico termorretrátil que encolhe ao calor</li>
+    <li><strong>Filme Stretch:</strong> plástico elástico que envolve sem calor</li>
+    <li><strong>Folhas STABULON®:</strong> papel antideslizante entre camadas (reutilizável até 15x, economia de 15%)</li>
+    <li><strong>Içamento:</strong> redes/cintas para guindaste</li>
+    <li><strong>Cintamento:</strong> cintas de nylon, poliéster, metálicas</li>
+  </ul>
+
+  <h3>1.11 Contêineres <span class="tag">LACINHO</span></h3>
+  <table>
+    <tr><th>Tipo</th><th>Capacidade</th><th>Uso</th></tr>
+    <tr><td><strong>Dry 20'</strong></td><td>24 ton / 33,2 m³</td><td>Cargas secas gerais</td></tr>
+    <tr><td><strong>Dry 40'</strong></td><td>30,5 ton / 67,6 m³</td><td>Cargas secas grandes</td></tr>
+    <tr><td><strong>High Cube 40'</strong></td><td>30,5 ton / 76,2 m³</td><td>Baixa densidade (roupas, móveis)</td></tr>
+    <tr><td><strong>Reefer 20'</strong></td><td>24 ton / 27,4 m³</td><td>Congelados, frutas, carnes</td></tr>
+    <tr><td><strong>Ultra Freezer</strong></td><td>33 m³ / -80°C</td><td>Medicamentos, vacinas</td></tr>
+    <tr><td><strong>Isotank</strong></td><td>15-26 mil L</td><td>Líquidos food grade, químicos</td></tr>
+    <tr><td><strong>Flexitank</strong></td><td>14-24 mil L</td><td>Líquidos em contêiner convencional (40% mais barato)</td></tr>
+    <tr><td><strong>Bulk</strong></td><td>Granéis sólidos</td><td>Farinha, plástico granulado, açúcar</td></tr>
+    <tr><td><strong>Ventilated</strong></td><td>—</td><td>Cargas que precisam respirar (café, cacau)</td></tr>
+  </table>
+
+  <h3>1.12 Tipos Especiais de Contêineres</h3>
+  <ul>
+    <li><strong>Open Top:</strong> abertura no topo, cargas altas/irregulares</li>
+    <li><strong>Open Side:</strong> abertura lateral, cargas vivas ou estufagem</li>
+    <li><strong>Flat Rack:</strong> sem paredes, cargas fora de padrão</li>
+    <li><strong>Platform:</strong> sem paredes/teto, cargas grandes/pesadas</li>
+    <li><strong>StoneLift:</strong> chapas de pedras ornamentais</li>
+  </ul>
+
+  <h3>1.13 Contêineres Aéreos (ULD)</h3>
+  <p>Unit Load Devices — padronizados pela IATA para agrupar carga em aeronaves. Podem ser retangulares ou cilíndricos.</p>
+
+  <h3>1.14 Modal Rodoviário <span class="tag">LACINHO</span></h3>
+  <p><strong>Características:</strong> carga fracionada, alta frequência, porta-a-porta, sem necessidade de carga/descarga intermediária.</p>
+  <p><strong>CIOT:</strong> Código Identificador da Operação de Transporte — registro eletrônico obrigatório do frete rodoviário pago, integrado ao MDF-e.</p>
+  <p><strong>Reboque vs Semirreboque:</strong> Reboque tem eixos próprios independentes (não transfere peso ao trator). Semirreboque apoia parte do peso no caminhão via 5ª roda — usado para cargas pesadas.</p>
+  <p><strong>Frota Ecoeficiente:</strong> modernização, otimização de rotas, gestão de combustível, energias alternativas, manutenção preventiva, telemetria, rodas de liga leve.</p>
+
+  <h3>1.15 Modal Ferroviário <span class="tag">LACINHO</span></h3>
+  <p><strong>Cargas típicas:</strong> minério de ferro, soja/milho, produtos siderúrgicos, carvão, derivados de petróleo, fertilizantes, cimento.</p>
+  <p><strong>Características:</strong> longas distâncias, baixa velocidade, precisa de outro modal para entrega, baixo custo, 66% menos CO₂.</p>
+  <p><strong>Locomotivas:</strong> Manobra (formação de trens) e Percurso (tracionam o trem).</p>
+  <p><strong>Vagões Hopper:</strong> abertura superior para descarga — grãos, minério, carvão.</p>
+
+  <h3>1.16 Modal Aquaviário <span class="tag">LACINHO</span></h3>
+  <p><strong>Hidrovia Tietê-Paraná:</strong> embarque em barcaças → transferência para vagão/caminhão → Porto de Santos. 12 bacias hidrográficas, 42 mil km de malha.</p>
+  <p><strong>Hidrovia Paraguai-Paraná:</strong> Cáceres (MS) a Nova Palmira (Uruguai) — 3.442 km, 5 países.</p>
+  <p><strong>Hidrovia Araguaia-Tocantins:</strong> 160m largura × 40m prof. × 43km — Centro-Oste ao Atlântico.</p>
+  <p><strong>Hidrovias Amazônia:</strong> Navegabilidade Peixe (TO) a Belém (PA) — 1.700 km.</p>
+
+  <h3>1.17 Corredor Bioceânico e Canal do Panamá <span class="tag">LACINHO</span></h3>
+  <p><strong>Corredor Bioceânico:</strong> Mato Grosso do Sul → Porto de Santos → portos chilenos (Antofagasta, Mejillones, Iquique). 2.400 km, túnel de 1,8 km.</p>
+  <p><strong>Canal do Panamá:</strong> 80 km, pedágio US$ 300-400 mil. Calado 14,63m (set/26, estiagem). Movimenta 5-6% do comércio marítimo.</p>
+
+  <h3>1.18 Portos e Terminais <span class="tag">LACINHO</span></h3>
+  <p><strong>Portos Brasileiros:</strong> Santos (SP), Rio Grande (RS), Salvador (BA), Paranaguá (PR), Suape (PE), Vila do Conde (PA).</p>
+  <p><strong>Tipos de Terminal:</strong> Contêineres (Portêineres STS, RTGs), Granéis, Líquidos, RO-RO (roll-on/roll-off).</p>
+
+  <h3>1.19 Sistemas de Abastecimento</h3>
+  <h4>Sistema Convencional</h4>
+  <p>Cada fornecedor entrega separadamente — rotas independentes, sem otimização, pode gerar custos maiores e prazos maiores.</p>
+  <h4>Sistema Milk Run</h4>
+  <p>Roteiro e horário predefinidos para coletas em múltiplos fornecedores. Objetivo: reduzir custos via economia de escala e racionalização de rotas.</p>
+  <div class="highlight">
+    <strong>Vantagens Milk Run:</strong> reduz custos de transporte (único veículo, múltiplas coletas), reduz estoques (entregas frequentes/pequenas), otimiza cadeia, reduz desperdícios de embalagem.
+  </div>
+
+  <h3>1.20 Cross Docking <span class="tag">LACINHO</span></h3>
+  <p>Produtos de vários fornecedores recebidos em CD e redistribuídos para destinos finais, com pouco/nenhum tempo de armazenagem.</p>
+  <div class="flow">
+    <span class="flow-step">Fornecedor 1</span>
+    <span class="flow-arrow">→</span>
+    <span class="flow-step">Cross Dock</span>
+    <span class="flow-arrow">→</span>
+    <span class="flow-step">Cliente A</span>
+  </div>
+  <p><strong>Tipos:</strong> Distribuição (consolida p/ destinos diferentes), Manufatura (p/ linha de produção), Transporte (reorganiza cargas).</p>
+  <p><strong>E-commerce:</strong> loja recebe pedido → fornece fornecedor → fatura e remete direto ao cliente.</p>
+
+  <h3>1.21 Logística Enxuta <span class="tag">LACINHO</span></h3>
+  <p>Filosofia Lean (Sistema Toyota de Produção) aplicada à logística: eliminar desperdícios, maximizar eficiência, garantir que cada atividade agregue valor.</p>
+  <p><strong>4 Princípios:</strong></p>
+  <ol>
+    <li><strong>Valor para o Cliente:</strong> identificar o que é valor e entregar exatamente isso</li>
+    <li><strong>Fluxo Contínuo:</strong> processos sem interrupções, minimizar tempos de espera</li>
+    <li><strong>Produção Puxada:</strong> mover produtos conforme demanda real (não empurrar)</li>
+    <li><strong>Melhoria Contínua:</strong> PDCA — Planejar, Fazer, Verificar, Agir</li>
+  </ol>
+
+  <h3>1.22 Last Mile <span class="tag">LACINHO</span></h3>
+  <p>Última etapa da entrega — do centro de distribuição ao cliente final. É a fase mais cara e complexa da logística.</p>
+  <p><strong>Desafios:</strong> tráfego urbano, variedade de endereços, primeira tentativa de entrega falha, custo proporcional alto.</p>
+
+  <h3>1.23 Dropshipping <span class="tag">LACINHO</span></h3>
+  <p>Vender online sem estoque — loja virtual é intermediária. Fornecedor envia direto ao cliente.</p>
+  <div class="flow">
+    <span class="flow-step">1. Cliente compra</span>
+    <span class="flow-arrow">→</span>
+    <span class="flow-step">2. Lojista pede ao fornecedor</span>
+    <span class="flow-arrow">→</span>
+    <span class="flow-step">3. Fornecedor envia p/ cliente</span>
+  </div>
+  <p><strong>Vantagens:</strong> baixo investimento, sem espaço físico, vende p/ todo Brasil.</p>
+  <p><strong>Desvantagens:</strong> alta concorrência, controle de envios limitado, margem menor, taxação aduaneira (internacional).</p>
+  <p><strong>Dropshipping vs Outsourcing:</strong> Dropshipping = fornecedor direto das mercadorias. Outsourcing = empresa distribuidora especializada.</p>
+
+  <h3>1.24 Fulfillment <span class="tag">LACINHO</span></h3>
+  <p>Conjunto de processos do pedido à entrega: receber pedido → separar → embalar → expedir → entregar. Facilita expansão do negócio (vendedor não preocupa com distribuição).</p>
+
+  <h3>1.25 Embalagens <span class="tag">LACINHO</span></h3>
+  <p>Funções: proteger, preservar, facilitar manuseio/transporte/comercialização, informar (natureza, qualidade, origem), auxiliar venda (aparência, identificação).</p>
+  <p><strong>Normalização:</strong> ABNT, INMETRO (Brasil); ISO, IEC (internacional).</p>
+
+  <h3>1.26 Código de Barras e RFID <span class="tag">LACINHO</span></h3>
+  <p><strong>EAN-13:</strong> 13 dígitos — código da empresa, fabricante, produto, dígito verificador.</p>
+  <p><strong>GS1-128:</strong> embalagens com pouco espaço.</p>
+  <p><strong>GS1-14:</strong> identifica embalagem de comercialização, mostra quantidade.</p>
+  <p><strong>QR Code:</strong> 2D, alta capacidade de armazenamento, lê com câmera de celular.</p>
+  <p><strong>RFID:</strong> chip + antena → envia info para leitor. Identifica, rastreia, controla e gerencia produtos.</p>
+
+  <h3>1.27 Equipamentos de Armazenagem</h3>
+  <table>
+    <tr><th>Equipamento</th><th>Uso</th><th>Capacidade</th></tr>
+    <tr><td><strong>Empilhamento no piso</strong></td><td>Carga direto no chão, otimização vertical</td><td>Grandes volumes paletizados</td></tr>
+    <tr><td><strong>Estantes</strong></td><td>Itens pequenos, separação ágil</td><td>Mezaninos possíveis</td></tr>
+    <tr><td><strong>Mezaninos</strong></td><td>Dobrar/triplicar espaço, fácil montagem</td><td>350-1.500 kg/m²</td></tr>
+    <tr><td><strong>Paleteiras</strong></td><td>Movimentação vertical/horizontal</td><td>Manual, hidráulica, elétrica</td></tr>
+    <tr><td><strong>Empilhadeiras</strong></td><td>Versatilidade total</td><td>Até 70 ton (portos)</td></tr>
+    <tr><td><strong>Robotistas</strong></td><td>Autônomos, 80 mil pacotes/dia</td><td>1m diâmetro, 600kg, 8h autonomia</td></tr>
+    <tr><td><strong>Monta-cargas</strong></td><td>Transporte vertical</td><td>—</td></tr>
+    <tr><td><strong>Coleiras/Combinados</strong></td><td>Transporte interno múltiplo</td><td>—</td></tr>
+    <tr><td><strong>Transpaleteiras</strong></td><td>Paletes curtos distâncias</td><td>—</td></tr>
+  </table>
+
+  <h3>1.28 Equipamentos de Transporte Interno</h3>
+  <p><strong>Paleteiras:</strong> Manual (força humana), Hidráulica (elevação mecânica), Elétrica (agilidade).</p>
+  <p><strong>Empilhadeiras:</strong> Versatilidade — movimentam praticamente tudo.</p>
+  <p><strong>Robotistas:</strong> Autônomos, IA anticolisão, até 600kg.</p>
+  <p><strong>Comboio:</strong> Veículo rebocador + reboques — múltiplas cargas em um percurso.</p>
+  <p><strong>Monovia/Eletromonovia:</strong> Sistema linear, trajeto fixo, ambientes industriais.</p>
+  <p><strong>Pontes Rolantes:</strong> Estrutura metálica, trilhos, capacidade 3-300 ton, 3D.</p>
+  <p><strong>Pórticos Rolantes:</strong> Vigas + pernas no trilho do solo.</p>
+  <p><strong>Guindastes:</strong> Caminhão Munck (braço articulado), Articulados, Telescópicos.</p>
+  <p><strong>Grabs:</strong> Conchas para material a granel (grãos, farinhas, areia).</p>
+
+  <h3>1.29 Equipamentos Portuários <span class="tag">LACINHO</span></h3>
+  <p><strong>Portêineres (STS):</strong> Guindastes grandes entre navio e cais. Movimentam contêineres.</p>
+  <p><strong>RTGs (Transtêineres):</strong> Pórtico com rodas de borracha, empilham contêineres em várias alturas no pátio.</p>
+  <p><strong>RMG (Rubber Tyred Gantry):</strong> Similar ao RTG, mobilidade sobre borracha.</p>
+  <p><strong>RRG (Rail Railed Gantry):</strong> Sobre trilhos ferroviários no pátio.</p>
+
+  <!-- EXERCÍCIOS LOGÍSTICA -->
+  <h3>📝 Exercícios</h3>
+  <div class="exercise">
+    <div class="q">1. Horizontalização significa:</div>
+    <div class="opts">
+      <label><input type="radio" name="log1"> A) Produzir internamente tudo</label>
+      <label><input type="radio" name="log1"> B) Comprar de terceiros e focar no core business</label>
+      <label><input type="radio" name="log1"> C) Verticalizar a cadeia de produção</label>
+      <label><input type="radio" name="log1"> D) Centralizar todas as compras em uma única unidade</label>
+    </div>
+  </div>
+  <div class="exercise">
+    <div class="q">2. Na classificação ABC, a classe A representa:</div>
+    <div class="opts">
+      <label><input type="radio" name="log2"> A) 50% dos itens / 5% do valor</label>
+      <label><input type="radio" name="log2"> B) 30% dos itens / 15% do valor</label>
+      <label><input type="radio" name="log2"> C) 20% dos itens / 80% do valor</label>
+      <label><input type="radio" name="log2"> D) 80% dos itens / 20% do valor</label>
+    </div>
+  </div>
+  <div class="exercise">
+    <div class="q">3. No FOB, quem paga o frete e o seguro?</div>
+    <div class="opts">
+      <label><input type="radio" name="log3"> A) O vendedor</label>
+      <label><input type="radio" name="log3"> B) O comprador</label>
+      <label><input type="radio" name="log3"> C) Ambos dividem</label>
+      <label><input type="radio" name="log3"> D) O banco emitente da carta de crédito</label>
+    </div>
+  </div>
+  <div class="exercise">
+    <div class="q">4. O peso cubado é usado quando:</div>
+    <div class="opts">
+      <label><input type="radio" name="log4"> A) O peso real é maior</label>
+      <label><input type="radio" name="log4"> B) O volume ocupado gera peso maior que o real</label>
+      <label><input type="radio" name="log4"> C) A carga é a granel</label>
+      <label><input type="radio" name="log4"> D) É transporte rodoviário exclusivamente</label>
+    </div>
+  </div>
+  <div class="exercise">
+    <div class="q">5. Cross docking se diferencia do armazenamento tradicional por:</div>
+    <div class="opts">
+      <label><input type="radio" name="log5"> A) Usar somente veículos elétricos</label>
+      <label><input type="radio" name="log5"> B) Receber e redistribuir com mínimo/nenhum tempo de estoque</label>
+      <label><input type="radio" name="log5"> C) Armazenar por longos períodos</label>
+      <label><input type="radio" name="log5"> D) Trabalhar só com cargas a granel</label>
+    </div>
+  </div>
+  <div class="exercise">
+    <div class="q">6. A logística enxuta tem como base:</div>
+    <div class="opts">
+      <label><input type="radio" name="log6"> A) Teoria da burocracia de Weber</label>
+      <label><input type="radio" name="log6"> B) Filosofia Lean / Sistema Toyota de Produção</label>
+      <label><input type="radio" name="log6"> C) Modelo fordista de produção</label>
+      <label><input type="radio" name="log6"> D) Teoria das restrições de Goldratt</label>
+    </div>
+  </div>
+  <div class="exercise">
+    <div class="q">7. Giro de estoques = 18 e cobertura em 180 dias → cobertura em dias:</div>
+    <div class="opts">
+      <label><input type="radio" name="log7"> A) 10 dias</label>
+      <label><input type="radio" name="log7"> B) 18 dias</label>
+      <label><input type="radio" name="log7"> C) 20 dias</label>
+      <label><input type="radio" name="log7"> D) 30 dias</label>
+    </div>
+  </div>
+  <div class="exercise">
+    <div class="q">8. O CIF difere do FOB porque:</div>
+    <div class="opts">
+      <label><input type="radio" name="log8"> A) Inclui frete e seguro até porto de destino</label>
+      <label><input type="radio" name="log8"> B) O comprador paga tudo</label>
+      <label><input type="radio" name="log8"> C) É usado só para cargas aéreas</label>
+      <label><input type="radio" name="log8"> D) Não tem seguro</label>
+    </div>
+  </div>
+
+  <button class="btn-gabarito" onclick="toggleGabarito('log')">🔍 Ver Gabarito</button>
+  <div class="gabarito" id="gabarito-log">
+    <div class="gabarito-item"><span class="corr">1 — B)</span> Horizontalização = comprar de terceiros, focar no core business.</div>
+    <div class="gabarito-item"><span class="corr">2 — C)</span> Classe A = 20% dos itens / 80% do valor (Pareto).</div>
+    <div class="gabarito-item"><span class="corr">3 — B)</span> No FOB, comprador paga frete e seguro a partir do embarque.</div>
+    <div class="gabarito-item"><span class="corr">4 — B)</span> Peso cubado > real → usa cubado. Marítimo tem fator 1000 kg/m³.</div>
+    <div class="gabarito-item"><span class="corr">5 — B)</span> Cross docking redistribui sem armazenagem. Transit point tem 1 fornecedor; cross docking tem vários.</div>
+    <div class="gabarito-item"><span class="corr">6 — B)</span> Lean = Sistema Toyota de Produção, eliminar desperdícios, fluxo contínuo.</div>
+    <div class="gabarito-item"><span class="corr">7 — A)</span> Cobertura = 180 / 18 = 10 dias.</div>
+    <div class="gabarito-item"><span class="corr">8 — A)</span> CIF = Cost, Insurance & Freight — vendedor paga custo + seguro + frete.</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- ECONOMIA INTERNACIONAL -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="card" id="econ">
+  <h2>🌐 2. Economia Internacional</h2>
+
+  <h3>2.1 Por que o Comércio Internacional Existe?</h3>
+  <p>Países trocam porque têm <strong>vantagens comparativas</strong> — cada um produz aquilo que custa menos em termos de oportunidade. Ganho mútuo.</p>
+
+  <table>
+    <tr><th>Teoria</th><th>Autor</th><th>Ideia central</th></tr>
+    <tr><td>Vantagem Absoluta</td><td>Adam Smith</td><td>Produzir com menos recursos físicos</td></tr>
+    <tr><td>Vantagem Comparativa</td><td>David Ricardo</td><td>Produzir com menor custo de oportunidade</td></tr>
+    <tr><td>Heckscher-Ohlin</td><td>H-O</td><td>Exportar bem que usa fator abundante do país</td></tr>
+  </table>
+  <div class="highlight">
+    <strong>Diferença-chave:</strong> Vantagem absoluta = produz mais com menos recursos. Vantagem comparativa = custo de oportunidade menor. Países SE COMPARAM mesmo que um seja absolutamente melhor em tudo.
+  </div>
+
+  <h3>2.2 Balança de Pagamentos <span class="tag">LACINHO</span></h3>
+  <p>Registro de todas as transações econômicas entre residentes de um país e o resto do mundo.</p>
+  <div class="flow">
+    <span class="flow-step">Conta Corrente</span>
+    <span class="flow-arrow">→</span>
+    <span class="flow-step">Conta de Capital</span>
+    <span class="flow-arrow">→</span>
+    <span class="flow-step">Conta Financeira</span>
+  </div>
+  <table>
+    <tr><th>Conta</th><th>O que registra</th><th>Exemplos</th></tr>
+    <tr><td><strong>Corrente</strong></td><td>Comércio de bens/serviços, rendas, transferências</td><td>Exportação de soja, remessas, turismo</td></tr>
+    <tr><td><strong>Capital</strong></td><td>Transferências de capital, perdões de dívida</td><td>Perdão de dívida, doações de capital</td></tr>
+    <tr><td><strong>Financeira</strong></td><td>Investimentos diretos, portfolio, empréstimos</td><td>FDIs, compra de ações, empréstimos bancários</td></tr>
+  </table>
+  <p><strong>Superávit:</strong> mais entradas que saídas. <strong>Déficit:</strong> mais saídas que entradas.</p>
+
+  <h3>2.3 Sistema Cambial <span class="tag">LACINHO</span></h3>
+  <table>
+    <tr><th>Tipo</th><th>Característica</th><th>Exemplo</th></tr>
+    <tr><td><strong>Fixo</strong></td><td>Banco central define e defende o valor</td><td>CNH pegado ao USD (antigo)</td></tr>
+    <tr><td><strong>Flutuante</strong></td><td>Mercado determina (oferta × demanda)</td><td>USD/BRL hoje</td></tr>
+    <tr><td><strong>Flutuante Sujo</strong></td><td>Banco central intervém pontualmente</td><td>Muitos países emergentes</td></tr>
+  </table>
+
+  <h3>2.4 Mercado Cambial <span class="tag">LACINHO</span></h3>
+  <p>Onde se compra e vende moedas estrangeiras. Agentes: bancos, corretoras, trade companies, Banco Central.</p>
+  <p><strong>Spot:</strong> câmbio para entrega imediata (D+2 para dólar). <strong>Forward:</strong> câmbio para entrega futura, taxa combinada hoje.</p>
+  <div class="highlight">
+    <strong>Câmbio Forward = hedge cambial.</strong> Empresa que vai receber US$ 1M daqui a 3 meses fixa a taxa hoje, eliminando risco de desvalorização do BRL.
+  </div>
+
+  <h3>2.5 Mercado de Opções Internacionais <span class="tag">LACINHO</span></h3>
+  <p><strong>Opção de câmbio</strong> dá o <em>direito</em> (não obrigação) de comprar ou vender moeda a taxa predefinida (strike), até uma data. Paga <strong>prêmio</strong> (não reembolsável).</p>
+  <table>
+    <tr><th>Tipo</th><th>Direito</th><th>Exercício ideal</th></tr>
+    <tr><td><strong>Call</strong></td><td>Comprar moeda</td><td>Se espera valorização da moeda</td></tr>
+    <tr><td><strong>Put</strong></td><td>Vender moeda</td><td>Se espera desvalorização da moeda</td></tr>
+  </table>
+  <p><strong>Comparação Forward × Opção:</strong></p>
+  <table>
+    <tr><th></th><th>Forward</th><th>Opção</th></tr>
+    <tr><td>Obrigação</td><td>Sim</td><td>Não (direito)</td></tr>
+    <tr><td>Custo</td><td>Zero (só spread)</td><td>Prêmio pago antecipado</td></tr>
+    <tr><td>Proteção</td><td>Total contra movimento adverso</td><td>Protege + permite aproveitar favorável</td></tr>
+    <tr><td>Uso</td><td>Cobertura certa</td><td>Quando incerteza é alta</td></tr>
+  </table>
+
+  <h3>2.6 Crise Financeira de 2008 <span class="tag">LACINHO</span> — 🔥 Prova</h3>
+  <p><strong>Causa raiz:</strong> empréstimos subprime (hipotecas para risco) → empacotados em MBS (Mortgage-Backed Securities) e CDO (Collateralized Debt Obligations) → vendidos como seguros via CDS (Credit Default Swap).</p>
+  <p><strong>Estouro:</strong> bolha imobiliária EUA (2007) → inadimplência → perda de valor dos títulos → <strong>Lehman Brothers quebra (15/09/2008)</strong> → crise de liquidez global → contágio para emergentes → crise dívida soberana Europa (2010).</p>
+  <div class="highlight warn">
+    <strong>Ponto de prova:</strong> A crise expôs risco sistêmico, falha regulatória e alavancagem excessiva. Respostas: TARP (resgate), juros a zero, QE (quantitative easing), Basileia III, Dodd-Frank.
+  </div>
+
+  <!-- EXERCÍCIOS ECON -->
+  <h3>📝 Exercícios</h3>
+  <div class="exercise">
+    <div class="q">1. Segundo Ricardo, um país deve exportar o que produz com:</div>
+    <div class="opts">
+      <label><input type="radio" name="econ1"> A) Menos recursos físicos</label>
+      <label><input type="radio" name="econ1"> B) Menor custo de oportunidade</label>
+      <label><input type="radio" name="econ1"> C) Maior tecnologia</label>
+      <label><input type="radio" name="econ1"> D) Maior mão de obra</label>
+    </div>
+  </div>
+  <div class="exercise">
+    <div class="q">2. A conta financeira registra:</div>
+    <div class="opts">
+      <label><input type="radio" name="econ2"> A) Exportação de soja</label>
+      <label><input type="radio" name="econ2"> B) Investimentos estrangeiros e empréstimos</label>
+      <label><input type="radio" name="econ2"> C) Turismo e transporte</label>
+      <label><input type="radio" name="econ2"> D) Remessas de brasileiros</label>
+    </div>
+  </div>
+  <div class="exercise">
+    <div class="q">3. Forward serve para:</div>
+    <div class="opts">
+      <label><input type="radio" name="econ3"> A) Especulação pura</label>
+      <label><input type="radio" name="econ3"> B) Cobertura de risco cambial</label>
+      <label><input type="radio" name="econ3"> C) Substituir o spot</label>
+      <label><input type="radio" name="econ3"> D) Definir taxa Selic</label>
+    </div>
+  </div>
+  <div class="exercise">
+    <div class="q">4. Opção Call = direito de:</div>
+    <div class="opts">
+      <label><input type="radio" name="econ4"> A) Vender moeda</label>
+      <label><input type="radio" name="econ4"> B) Comprar moeda</label>
+      <label><input type="radio" name="econ4"> C) Trocar moeda sem custo</label>
+      <label><input type="radio" name="econ4"> D) Especular com ações</label>
+    </div>
+  </div>
+  <div class="exercise">
+    <div class="q">5. Crise 2008 — estopim nos EUA:</div>
+    <div class="opts">
+      <label><input type="radio" name="econ5"> A) Falta de petróleo</label>
+      <label><input type="radio" name="econ5"> B) Bolha imobiliária e títulos subprime</label>
+      <label><input type="radio" name="econ5"> C) Guerra comercial</label>
+      <label><input type="radio" name="econ5"> D) Pandemia</label>
+    </div>
+  </div>
+  <div class="exercise">
+    <div class="q">6. Instrumento que dá direito (não obrigação):</div>
+    <div class="opts">
+      <label><input type="radio" name="econ6"> A) Swap</label>
+      <label><input type="radio" name="econ6"> B) Forward</label>
+      <label><input type="radio" name="econ6"> C) Opção</label>
+      <label><input type="radio" name="econ6"> D) FDR</label>
+    </div>
+  </div>
+
+  <button class="btn-gabarito" onclick="toggleGabarito('econ')">🔍 Ver Gabarito</button>
+  <div class="gabarito" id="gabarito-econ">
+    <div class="gabarito-item"><span class="corr">1 — B)</span> Vantagem comparativa = menor custo de oportunidade (Ricardo).</div>
+    <div class="gabarito-item"><span class="corr">2 — B)</span> Conta financeira = investimentos e empréstimos internacionais.</div>
+    <div class="gabarito-item"><span class="corr">3 — B)</span> Forward = fixa taxa futura para cobrir risco cambial.</div>
+    <div class="gabarito-item"><span class="corr">4 — B)</span> Call = direito de comprar.</div>
+    <div class="gabarito-item"><span class="corr">5 — B)</span> Estouro da bolha imobiliária e calote em MBS/CDOs.</div>
+    <div class="gabarito-item"><span class="corr">6 — C)</span> Opção dá direito, não obrigação.</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- GESTÃO FINANCEIRA -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="card" id="fin">
+  <h2>💰 3. Gestão Financeira</h2>
+
+  <h3>3.1 Juros Simples</h3>
+  <p><strong>O que é:</strong> juros calculados <em>apenas</em> sobre o capital inicial. Não rende sobre juros.</p>
+  <div class="formula">
+    <span class="label">Fórmula</span>
+    J = C × i × t<br>
+    M = C + J = C(1 + i × t)
+  </div>
+  <p><strong>Dedução:</strong> se empresto R$ 1.000 a 5% ao mês por 3 meses, cada mês gera R$ 50 de juros → 3 × 50 = R$ 150.</p>
+  <p><strong>Aplicabilidade:</strong> empréstimos curtos, contas a prazo simples, análise preliminar rápida.</p>
+  <p><strong>Por que existe:</strong> modelo mais simples — usado quando o tempo é curto e não há reinvestimento dos juros.</p>
+  <div class="highlight">
+    <strong>Exemplo prático:</strong> Financiar R$ 5.000 a 2% ao mês por 6 meses → J = 5000 × 0,02 × 6 = R$ 600. Montante = R$ 5.600.
+  </div>
+
+  <h3>3.2 Juros Compostos <span class="tag">LACINHO</span></h3>
+  <p><strong>O que é:</strong> juros sobre juros — o capital "trabalha" e gera rendimento acumulativo. É a regra de ouro das finanças.</p>
+  <div class="formula">
+    <span class="label">Fórmula</span>
+    M = C × (1 + i)<sup>t</sup>
+  </div>
+  <p><strong>Dedução:</strong> a cada período, o montante vira novo capital. M = C×(1+i)×(1+i)×… = C(1+i)^t.</p>
+  <p><strong>Aplicabilidade:</strong> financiamentos imobiliários, investimentos longo prazo, cálculo de inflação, preço de ações.</p>
+  <p><strong>Por que existe:</strong> reflete a realidade — juros geram mais juros. É o crescimento exponencial.</p>
+  <div class="highlight">
+    <strong>Exemplo prático:</strong> R$ 1.000 a 4% ao mês, 2 meses → M = 1000 × (1,04)² = 1000 × 1,0816 = <strong>R$ 1.081,60</strong>.
+  </div>
+
+  <h3>3.3 Valor Presente (VP) <span class="tag">LACINHO</span></h3>
+  <p><strong>O que é:</strong> quanto um valor futuro "vale hoje". Princípio: dinheiro hoje rende, então vale mais.</p>
+  <div class="formula">
+    <span class="label">Fórmula</span>
+    VP = VF / (1 + i)<sup>t</sup>
+  </div>
+  <p><strong>Dedução:</strong> inverte juros compostos. Se VF = VP×(1+i)^t, então VP = VF/(1+i)^t.</p>
+  <p><strong>Aplicabilidade:</strong> avaliar investimentos, comparar alternativas, precificar ativos, decisão de aceitar/rejeitar projeto.</p>
+  <div class="highlight">
+    <strong>Exemplo prático:</strong> Receber R$ 1.157,63 daqui a 2 meses a 4% ao mês → VP = 1157,63 / (1,04)² = <strong>R$ 1.000</strong>. Ou seja, R$ 1.000 hoje = R$ 1.157,63 daqui a 2 meses a 4% a.m.
+  </div>
+
+  <h3>3.4 Valor Futuro (VF)</h3>
+  <div class="formula">
+    <span class="label">Fórmula</span>
+    VF = VP × (1 + i)<sup>t</sup>
+  </div>
+  <p><strong>O que é:</strong> quanto um valor hoje vale no futuro. É a inversa do VP.</p>
+  <p><strong>Aplicabilidade:</strong> planejamento de metas ("quanto preciso guardar hoje para ter R$ X no futuro?").</p>
+
+  <h3>3.5 TIR — Taxa Interna de Retorno <span class="tag">LACINHO</span></h3>
+  <p><strong>O que é:</strong> taxa que torna o VPL = 0 (o investimento se paga sozinho).</p>
+  <div class="formula">
+    <span class="label">Fórmula</span>
+    0 = −C₀ + CF₁/(1+TIR)¹ + CF₂/(1+TIR)² + … + CFn/(1+TIR)n
+  </div>
+  <p><strong>Dedução:</strong> partimos do VPL, igualamos a zero e isolamos a taxa. Na prática, calcula-se por tentativa-e-erro ou HP-12C/Excel (função TAXA).</p>
+  <p><strong>Aplicabilidade:</strong> decidir se projeto vale a pena: TIR &gt; custo de capital → aceitar.</p>
+  <div class="highlight">
+    <strong>Regra de decisão:</strong> TIR &gt; custo de capital → projeto rentável (gera valor). TIR &lt; custo → destrói valor → rejeitar.
+  </div>
+  <p><strong>Exemplo prático:</strong> Investimento R$ 1.000; fluxos R$ 400, R$ 500, R$ 600 (3 anos). TIR ≈ 23,4% (calculado por tentativa). Se custo de capital = 10% → <strong>aceitar</strong> (23,4% &gt; 10%).</p>
+
+  <h3>3.6 VPL — Valor Presente Líquido <span class="tag">LACINHO</span></h3>
+  <div class="formula">
+    <span class="label">Fórmula</span>
+    VPL = −C₀ + Σ CF<sub>t</sub> / (1 + k)<sup>t</sup>
+  </div>
+  <p><strong>Dedução:</strong> traz todo fluxo futuro a valor presente (desconto) e subtrai o investimento inicial.</p>
+  <p><strong>Aplicabilidade:</strong> comparar projetos — maior VPL = maior valor criado para acionistas.</p>
+  <div class="highlight">
+    <strong>Exemplo prático:</strong> Projeto: C₀ = R$ 1.000; CF = 400, 500, 600 (3 anos); k = 10%.<br>
+    VPL = −1000 + 400/1,1 + 500/1,21 + 600/1,331 = −1000 + 363,64 + 413,22 + 450,79 = <strong>R$ 227,65</strong> → <strong>aceitar</strong> (VPL &gt; 0).
+  </div>
+  <p><strong>Regra:</strong> VPL &gt; 0 → aceitar. VPL &lt; 0 → rejeitar. VPL = 0 → indiferente.</p>
+
+  <h3>3.7 TIR × VPL — Comparação</h3>
+  <table>
+    <tr><th></th><th>TIR</th><th>VPL</th></tr>
+    <tr><td><strong>O que mostra</strong></td><td>Taxa de retorno (%)</td><td>Valor criado (R$)</td></tr>
+    <tr><td><strong>Decisão</strong></td><td>TIR &gt; custo de capital</td><td>VPL &gt; 0</td></tr>
+    <tr><td><strong>Conflito</strong></td><td colspan="2">Projetos de tamanhos diferentes ou timing diferente podem dar sinais conflitantes → preferir VPL</td></tr>
+  </table>
+
+  <h3>3.8 Custo de Capital (WACC) <span class="tag">LACINHO</span></h3>
+  <div class="formula">
+    <span class="label">Fórmula</span>
+    WACC = w<sub>d</sub> × k<sub>d</sub> × (1 − t) + w<sub>e</sub> × k<sub>e</sub>
+  </div>
+  <p><strong>w<sub>d</sub></strong> = peso da dívida · <strong>k<sub>d</sub></strong> = custo da dívida (juros) · <strong>t</strong> = taxa de impostos · <strong>w<sub>e</sub></strong> = peso do patrimônio · <strong>k<sub>e</sub></strong> = custo do patrimônio (CAPM).</p>
+  <p><strong>O que representa:</strong> retorno mínimo que a empresa precisa gerar para satisfazer investidores (dividendos + juros).</p>
+  <p><strong>Aplicabilidade:</strong> taxa de desconto no VPL, barreira mínima para novos projetos. Se projeto não rende WACC → destrói valor.</p>
+
+  <h3>3.9 CAPM — Capital Asset Pricing Model</h3>
+  <div class="formula">
+    <span class="label">Fórmula</span>
+    k<sub>e</sub> = R<sub>f</sub> + β × (R<sub>m</sub> − R<sub>f</sub>)
+  </div>
+  <p><strong>R<sub>f</sub></strong> = taxa livre de risco (Tesouro Selic) · <strong>β</strong> = risco relativo ao mercado · <strong>R<sub>m</sub></strong> = retorno esperado do mercado.</p>
+  <p><strong>O que é:</strong> calcula o retorno exigido pelo investidor conforme o risco do ativo.</p>
+  <p><strong>β &gt; 1:</strong> mais volátil que o mercado · <strong>β &lt; 1:</strong> menos volátil · <strong>β = 1:</strong> mesmo risco do mercado.</p>
+
+  <h3>3.10 Ponto de Equilíbrio <span class="tag">LACINHO</span></h3>
+  <div class="formula">
+    <span class="label">Fórmula</span>
+    PE = CF / (P − CV)<br>
+    PE<sub>total</sub> = (CF + Depreciação) / (P − CV)
+  </div>
+  <p><strong>CF</strong> = custos fixos (aluguel, salários) · <strong>P</strong> = preço de venda · <strong>CV</strong> = custo variável unitário (matéria-prima, comissão).</p>
+  <p><strong>Dedução:</strong> no PE, Receita = Custos totais. R = P×Q; CT = CF + CV×Q → P×Q = CF + CV×Q → Q×(P−CV) = CF → Q = CF/(P−CV).</p>
+  <div class="highlight">
+    <strong>Exemplo prático:</strong> CF = R$ 10.000/mês, P = R$ 50, CV = R$ 30 → PE = 10.000/(50−30) = 10.000/20 = <strong>500 unidades/mês</strong>.
+  </div>
+  <p><strong>Margem de contribuição:</strong> (P − CV) = quanto cada unidade contribui para cobrir custos fixos. Aqui: R$ 20/unidade.</p>
+
+  <h3>3.11 Análise de Demonstrativos Financeiros <span class="tag">LACINHO</span></h3>
+  <table>
+    <tr><th>Índice</th><th>Fórmula</th><th>Interpretação</th></tr>
+    <tr><td><strong>Liquidez Corrente</strong></td><td>Ativo Circ. / Passivo Circ.</td><td>&gt;1 = pende curto prazo</td></tr>
+    <tr><td><strong>Liquidez Seca</strong></td><td>(AC − Estoque) / PC</td><td>&gt;1 = sem estoque já cobre débitos</td></tr>
+    <tr><td><strong>Giro de Ativos</strong></td><td>Receita / Ativo Total</td><td>Quanto gera por R$ 1 de ativo</td></tr>
+    <tr><td><strong>ROE</strong></td><td>Lucro Líq. / Patrimônio Líq.</td><td>Retorno sobre patrimônio líquido</td></tr>
+    <tr><td><strong>Endividamento</strong></td><td>Passivo / Ativo</td><td>% financiada por terceiros</td></tr>
+    <tr><td><strong>EBITDA</strong></td><td>Lucro + Juros + Taxes + Depreciação</td><td>Resultado operacional puro</td></tr>
+  </table>
+
+  <h3>3.12 Rentabilidade vs Retorno</h3>
+  <p><strong>Rentabilidade (ROE/ROA):</strong> quanto a empresa gera de lucro sobre o patrimônio/ativos. Mede eficiência.</p>
+  <p><strong>Retorno (CAPM):</strong> quanto o investidor <em>exige</em> como compensação pelo risco assumido.</p>
+  <div class="highlight">
+    <strong>Regra:</strong> ROE &gt; custo de capital → empresa cria valor. ROE &lt; custo → destrói valor.
+  </div>
+
+  <!-- EXERCÍCIOS FIN -->
+  <h3>📝 Exercícios</h3>
+  <div class="exercise">
+    <div class="q">1. Juros simples sobre R$ 2.000 a 3% ao mês, 4 meses:</div>
+    <div class="opts">
+      <label><input type="radio" name="fin1"> A) R$ 120</label>
+      <label><input type="radio" name="fin1"> B) R$ 240</label>
+      <label><input type="radio" name="fin1"> C) R$ 360</label>
+      <label><input type="radio" name="fin1"> D) R$ 480</label>
+    </div>
+  </div>
+  <div class="exercise">
+    <div class="q">2. R$ 1.000 a juros compostos 4% ao mês, 2 meses, montante:</div>
+    <div class="opts">
+      <label><input type="radio" name="fin2"> A) R$ 1.080</label>
+      <label><input type="radio" name="fin2"> B) R$ 1.081,60</label>
+      <label><input type="radio" name="fin2"> C) R$ 1.082,40</label>
+      <label><input type="radio" name="fin2"> D) R$ 1.084,00</label>
+    </div>
+  </div>
+  <div class="exercise">
+    <div class="q">3. A TIR é a taxa que torna:</div>
+    <div class="opts">
+      <label><input type="radio" name="fin3"> A) VPL = 1</label>
+      <label><input type="radio" name="fin3"> B) VPL = 0</label>
+      <label><input type="radio" name="fin3"> C) CF = 0</label>
+      <label><input type="radio" name="fin3"> D) Custo de capital = 0</label>
+    </div>
+  </div>
+  <div class="exercise">
+    <div class="q">4. PE = CF/(P−CV). CF=8.000, P=60, CV=40 → PE:</div>
+    <div class="opts">
+      <label><input type="radio" name="fin4"> A) 200 u.</label>
+      <label><input type="radio" name="fin4"> B) 300 u.</label>
+      <label><input type="radio" name="fin4"> C) 400 u.</label>
+      <label><input type="radio" name="fin4"> D) 500 u.</label>
+    </div>
+  </div>
+  <div class="exercise">
+    <div class="q">5. WACC é usado como:</div>
+    <div class="opts">
+      <label><input type="radio" name="fin5"> A) Taxa do Banco Central</label>
+      <label><input type="radio" name="fin5"> B) Taxa de desconto no VPL</label>
+      <label><input type="radio" name="fin5"> C) Tabela de IRRF</label>
+      <label><input type="radio" name="fin5"> D) Câmbio comercial</label>
+    </div>
+  </div>
+  <div class="exercise">
+    <div class="q">6. Índice que mede retorno sobre patrimônio líquido:</div>
+    <div class="opts">
+      <label><input type="radio" name="fin6"> A) Giro de ativos</label>
+      <label><input type="radio" name="fin6"> B) Liquidez seca</label>
+      <label><input type="radio" name="fin6"> C) ROE</label>
+      <label><input type="radio" name="fin6"> D) Endividamento</label>
+    </div>
+  </div>
+  <div class="exercise">
+    <div class="q">7. VP de R$ 1.210 a receber em 2 períodos a 10% ao período:</div>
+    <div class="opts">
+      <label><input type="radio" name="fin7"> A) R$ 1.000</label>
+      <label><input type="radio" name="fin7"> B) R$ 1.100</label>
+      <label><input type="radio" name="fin7"> C) R$ 1.050</label>
+      <label><input type="radio" name="fin7"> D) R$ 1.200</label>
+    </div>
+  </div>
+  <div class="exercise">
+    <div class="q">8. Se TIR &gt; custo de capital, o projeto:</div>
+    <div class="opts">
+      <label><input type="radio" name="fin8"> A) Rejeita</label>
+      <label><input type="radio" name="fin8"> B) Aceita</label>
+      <label><input type="radio" name="fin8"> C) Empata</label>
+      <label><input type="radio" name="fin8"> D) Depende do VPL</label>
+    </div>
+  </div>
+
+  <button class="btn-gabarito" onclick="toggleGabarito('fin')">🔍 Ver Gabarito</button>
+  <div class="gabarito" id="gabarito-fin">
+    <div class="gabarito-item"><span class="corr">1 — B)</span> J = 2000 × 0,03 × 4 = R$ 240.</div>
+    <div class="gabarito-item"><span class="corr">2 — B)</span> M = 1000 × (1,04)² = 1000 × 1,0816 = R$ 1.081,60.</div>
+    <div class="gabarito-item"><span class="corr">3 — B)</span> TIR é a taxa que anula o VPL.</div>
+    <div class="gabarito-item"><span class="corr">4 — C)</span> PE = 8000/(60−40) = 8000/20 = 400 u.</div>
+    <div class="gabarito-item"><span class="corr">5 — B)</span> WACC é a taxa mínima de retorno → serve como desconto no VPL.</div>
+    <div class="gabarito-item"><span class="corr">6 — C)</span> ROE = Lucro Líquido / Patrimônio Líquido.</div>
+    <div class="gabarito-item"><span class="corr">7 — A)</span> VP = 1210 / (1,1)² = 1210 / 1,21 = R$ 1.000.</div>
+    <div class="gabarito-item"><span class="corr">8 — B)</span> TIR &gt; custo de capital → projeto cria valor → aceitar.</div>
+  </div>
+</div>
+
+<footer>
+  📖 Desenvolvido para estudo — FATEC — 2026 · OnStage Branding · Roxo #533afd + Amarelo #fbbf24<br>
+  ⚠️ Logística: tópicos <span class="tag">LACINHO</span> baseados nos PDFs extraídos — envie os slides originais e ajusto.
+</footer>
+
+</div><!-- /container -->
+
+<script>
+function toggleGabarito(id) {
+  const el = document.getElementById('gabarito-' + id);
+  const btn = event.target;
+  if (el.classList.contains('show')) {
+    el.classList.remove('show');
+    btn.textContent = '🔍 Ver Gabarito';
+  } else {
+    el.classList.add('show');
+    btn.textContent = '🔼 Esconder Gabarito';
+  }
+}
+
+document.querySelectorAll('nav a').forEach(a => {
+  a.addEventListener('click', function(e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    target.scrollIntoView({behavior:'smooth'});
+    document.querySelectorAll('nav a').forEach(x => x.classList.remove('active'));
+    this.classList.add('active');
+  });
+});
+
+window.addEventListener('scroll', () => {
+  const ids = ['logistica','econ','fin'];
+  let current = '';
+  ids.forEach(id => {
+    const el = document.getElementById(id);
+    if (el && el.getBoundingClientRect().top < 120) current = id;
+  });
+  document.querySelectorAll('nav a').forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+  });
+});
+</script>
+</body>
+</html>
